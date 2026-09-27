@@ -1,0 +1,701 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Dragonwilds Bestiary V0.32</title><style>
+:root{--bg:#0d1311;--card:#18211e;--card2:#111916;--line:#2b3934;--text:#f4f7f5;--muted:#91a39b;--gold:#d9ad55;--green:#7bd389;--red:#e97870;--blue:#77b7d9}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif}.app{max-width:540px;margin:auto;min-height:100vh;padding:16px 15px 92px}.top{display:flex;align-items:center;justify-content:space-between;margin-bottom:13px}.top h1{font-size:22px;margin:0}.tag{font-size:10px;letter-spacing:.5px;background:#342a18;color:#f3d691;padding:6px 9px;border-radius:99px}.search{width:100%;padding:13px 14px;border-radius:14px;background:var(--card);border:1px solid var(--line);color:#fff;font-size:16px}.filters{display:flex;gap:7px;overflow:auto;padding:10px 0}.chip{white-space:nowrap;border:1px solid var(--line);background:#202d28;color:#dbe4e0;padding:8px 11px;border-radius:99px;font-size:12px}.chip.active{border-color:var(--gold);color:#f5d88d;background:#30291b}.grid{display:grid;gap:10px}.creature{background:var(--card);border:1px solid var(--line);border-radius:17px;padding:12px;display:grid;grid-template-columns:62px 1fr auto;gap:11px;align-items:center;cursor:pointer}.portrait{height:62px;width:62px;border-radius:14px;overflow:hidden;background:linear-gradient(145deg,#34473f,#1c2823);display:grid;place-items:center;font-size:30px}.portrait img{width:100%;height:100%;object-fit:cover;display:block}.hero.hasimage{height:230px;overflow:hidden;padding:0}.hero.hasimage img{width:100%;height:100%;object-fit:cover;display:block}.imgstatus{font-size:10px;color:#f3d691;margin-top:4px}.auditbar{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin:10px 0}.auditbox{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:9px;text-align:center}.auditbox b{display:block;font-size:16px}.auditbox span{font-size:9px;color:var(--muted)}.name{font-weight:800}.small{font-size:11px;color:var(--muted)}.meta{font-size:12px;color:var(--muted);margin-top:3px}.stats{display:flex;gap:6px;flex-wrap:wrap;margin-top:7px}.pill{font-size:11px;padding:4px 7px;border:1px solid var(--line);border-radius:8px;background:#101714}.fav{border:0;background:transparent;color:#ddd;font-size:22px;padding:10px}.section{display:none}.section.active{display:block}.bottom{position:fixed;left:50%;bottom:0;transform:translateX(-50%);width:min(540px,100%);display:grid;grid-template-columns:repeat(3,1fr);background:#111916ef;backdrop-filter:blur(14px);border-top:1px solid var(--line);padding:7px 8px max(7px,env(safe-area-inset-bottom));z-index:20}.nav{border:0;background:transparent;color:var(--muted);padding:10px 5px;font-weight:700}.nav.active{color:#f1c96e}.mapwrap{position:relative}.map{height:560px;touch-action:pan-x pan-y;border-radius:19px;overflow:hidden;border:1px solid var(--line);position:relative;background:radial-gradient(ellipse at 23% 26%,#334f3d 0 12%,transparent 13%),radial-gradient(ellipse at 68% 63%,#4b5137 0 17%,transparent 18%),radial-gradient(ellipse at 78% 24%,#514c3b 0 10%,transparent 11%),linear-gradient(145deg,#263b31,#121b17)}.region{position:absolute;font-size:10px;color:#d5dfdaaa}.cluster{position:absolute;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:var(--gold);color:#17130b;font-weight:900;border:3px solid #fff6;box-shadow:0 5px 15px #0009;cursor:pointer}.pin{position:absolute;width:25px;height:25px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:#e5c06c;border:2px solid #fff9}.pin.boss{background:#c6655d}.habitat{position:absolute;border:2px dashed #d8b45d99;background:#d8b45d18;border-radius:45%}.zoom{position:absolute;right:12px;top:12px;display:grid;gap:7px}.zoom button{width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:#101714dd;color:#fff;font-size:19px}.mapnote{font-size:11px;color:var(--muted);margin:9px 3px}.sheet{position:absolute;left:8px;right:8px;bottom:8px;background:#111916f5;border:1px solid var(--line);border-radius:16px;padding:12px;display:none}.sheet.show{display:block}.check{display:flex;justify-content:space-between;align-items:center;background:var(--card);border:1px solid var(--line);padding:13px;border-radius:15px;margin-bottom:9px}.checks{display:flex;gap:8px}.toggle{font-size:11px;border:1px solid var(--line);background:#111916;color:#ccd7d2;padding:6px 8px;border-radius:8px}.toggle.on{color:#f2ce79;border-color:#8c7139}.progress{height:8px;background:#22302b;border-radius:99px;overflow:hidden;margin:10px 0 14px}.progress b{display:block;height:100%;background:var(--gold)}.modal{position:fixed;inset:0;background:#080c0aee;z-index:50;display:none;overflow:auto}.modal.show{display:block}.detail{max-width:540px;margin:auto;padding:14px 15px 40px}.back{border:0;background:#1b2622;color:#fff;border-radius:12px;padding:10px 12px;margin-bottom:12px}.hero{height:180px;border-radius:20px;background:linear-gradient(145deg,#344b40,#151f1b);display:grid;place-items:center;font-size:68px;border:1px solid var(--line);position:relative}.hero .verify{position:absolute;right:10px;bottom:10px;font-size:10px;background:#111916dd;border:1px solid var(--line);padding:5px 7px;border-radius:8px;color:#b9c7c1}.detail h2{margin:14px 0 3px}.tabs{display:flex;gap:6px;overflow:auto;margin:14px 0}.tab{white-space:nowrap;border:1px solid var(--line);background:#18231f;color:#cdd8d3;padding:8px 10px;border-radius:10px}.tab.active{border-color:var(--gold);color:#f5d98e}.panel{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:13px}.rows{display:grid;grid-template-columns:1fr 1fr;gap:8px}.statbox{background:#111916;border:1px solid var(--line);padding:10px;border-radius:12px}.statbox b{display:block;font-size:12px}.status{display:flex;justify-content:space-between;border-bottom:1px solid #26332e;padding:9px 0}.status:last-child{border:0}.good{color:var(--green)}.bad{color:var(--red)}.unknown{color:#d5b76d}.select{width:100%;background:#111916;color:white;border:1px solid var(--line);border-radius:11px;padding:11px;margin:5px 0 10px}.spoiler{padding:18px;text-align:center}.reveal{border:1px solid #775f32;background:#302719;color:#f3d181;border-radius:11px;padding:10px 13px}.legend{display:flex;gap:10px;flex-wrap:wrap;margin:8px 2px 12px;font-size:11px;color:var(--muted)}.legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:4px}.density{display:flex;align-items:center;gap:8px;margin:9px 0}.density input{flex:1}.maptoolbar{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:8px 0}.maptoolbar button{border:1px solid var(--line);background:#17211d;color:#e8efec;border-radius:10px;padding:8px 10px}.pin.dot{transform:none;border-radius:50%;width:14px;height:14px}.pin.hiddenpin{display:none}.cluster.faded,.pin.faded{opacity:.12}.habitat.faded{opacity:.08}.progression{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px;margin:10px 0}.progression select{width:100%;margin-top:6px;background:#111916;color:#fff;border:1px solid var(--line);border-radius:10px;padding:9px}</style>
+<style id="dw-mobile-polish">
+:root{--dw-bg:#07131c;--dw-panel:#102330;--dw-panel2:#152d3d;--dw-line:#35546a;--dw-text:#edf7ff;--dw-muted:#9fb7c7}
+html{scroll-behavior:smooth}
+body{background:var(--dw-bg);color:var(--dw-text);padding-bottom:max(92px,calc(76px + env(safe-area-inset-bottom)));-webkit-tap-highlight-color:transparent}
+button,a,select,input{min-height:42px}
+button,a{-webkit-touch-callout:none}
+img{max-width:100%}
+.card,.creature-card,article{border-radius:16px!important}
+#dwIntegrationBanner,#mapModelNote,#dwStressPanel,#dwCoordAudit,#dwMapExpansion,#dwRealMap{box-sizing:border-box;width:calc(100% - 20px);margin-left:auto!important;margin-right:auto!important}
+#dwMapContextBar{bottom:max(82px,calc(70px + env(safe-area-inset-bottom)))!important}
+#dwMobileNav{
+ position:fixed;left:0;right:0;bottom:0;z-index:9999;
+ display:grid;grid-template-columns:repeat(3,1fr);gap:6px;
+ padding:8px 10px calc(8px + env(safe-area-inset-bottom));
+ background:rgba(7,19,28,.96);backdrop-filter:blur(12px);
+ border-top:1px solid var(--dw-line);box-shadow:0 -8px 28px #0008
+}
+#dwMobileNav button{border:0;border-radius:13px;background:transparent;color:var(--dw-muted);font-weight:700;font-size:12px;padding:7px 4px}
+#dwMobileNav button.active{background:var(--dw-panel2);color:#fff}
+#dwMobileNav .ico{display:block;font-size:20px;line-height:22px;margin-bottom:2px}
+#dwMobileTop{position:sticky;top:0;z-index:9990;display:flex;align-items:center;gap:9px;padding:9px 12px;background:rgba(7,19,28,.94);backdrop-filter:blur(12px);border-bottom:1px solid #284457}
+#dwMobileTop b{font-size:14px}
+#dwMobileTop span{font-size:10px;color:var(--dw-muted);margin-left:auto}
+@media(min-width:760px){#dwMobileNav{left:50%;right:auto;transform:translateX(-50%);width:420px;border:1px solid var(--dw-line);border-bottom:0;border-radius:18px 18px 0 0}#dwMobileTop{display:none}}
+@media(max-width:520px){
+ body{font-size:14px}
+ h1{font-size:24px}h2{font-size:20px}h3{font-size:17px}
+ #dwStressCards,#dwMapExpansionGrid,#dwLiveLayerGrid{grid-template-columns:1fr 1fr!important}
+ #dwMapViewport{max-height:58vh!important}
+ input,select{font-size:16px!important}
+}
+@media(max-width:370px){#dwStressCards,#dwMapExpansionGrid,#dwLiveLayerGrid{grid-template-columns:1fr!important}}
+</style>
+
+<style id="dw-image-integrity">
+.dw-img-badge{display:inline-flex;align-items:center;gap:5px;padding:4px 7px;border:1px solid #49677c;border-radius:999px;background:#102737;color:#dceefa;font-size:10px;font-weight:700}
+.dw-shot-needed{position:relative;min-height:150px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:5px;padding:18px;border:1px dashed #52738a;border-radius:14px;background:linear-gradient(145deg,#112635,#091720);color:#c9dce8;text-align:center;overflow:hidden}
+.dw-shot-needed:before{content:"🐉";font-size:42px;filter:grayscale(.25);opacity:.8}
+.dw-shot-needed small{color:#91adbe;max-width:220px}
+.dw-image-audit{max-width:980px;margin:12px auto;padding:12px;border:1px solid #3b596f;border-radius:16px;background:#0d1c28;color:#e9f5ff}
+.dw-image-audit-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px;margin-top:10px}
+.dw-image-audit-card{padding:10px;border:1px solid #304b61;border-radius:12px;background:#132635}
+</style><style id="dw-family-visuals">
+.dw-family-panel{max-width:980px;margin:12px auto;padding:12px;border:1px solid #3b596f;border-radius:16px;background:#0d1c28;color:#e9f5ff}
+.dw-family-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px;margin-top:10px}
+.dw-family-card{padding:11px;border:1px solid #304b61;border-radius:14px;background:#132635}
+.dw-family-icon{font-size:30px;line-height:36px}.dw-family-members{font-size:11px;color:#b2c6d4;margin-top:5px}.dw-family-status{font-size:10px;color:#88a8bb;margin-top:6px}
+.dw-family-tag{display:inline-flex;padding:3px 7px;border-radius:999px;border:1px solid #405f75;background:#102635;font-size:10px;margin:3px 3px 0 0}
+</style>
+<style id="dw-family-card-application">
+.dw-family-chip{display:inline-flex;align-items:center;gap:4px;margin:4px 4px 3px 0;padding:3px 7px;border:1px solid #416177;border-radius:999px;background:#102838;color:#d9ebf6;font-size:10px;font-weight:700;vertical-align:middle}
+.dw-family-chip .fi{font-size:13px}
+.dw-family-strip{display:flex;flex-wrap:wrap;align-items:center;gap:3px;margin-top:5px}
+</style>
+<style id="dw-detail-layout">
+.dw-detail-shell{max-width:720px;margin:10px auto;padding:12px;border:1px solid #36566d;border-radius:18px;background:#0d1c28;color:#eef8ff}
+.dw-detail-hero{display:grid;grid-template-columns:112px 1fr;gap:12px;align-items:center}
+.dw-detail-portrait{height:112px;border-radius:15px;overflow:hidden;border:1px solid #3e6076;background:linear-gradient(145deg,#183448,#0a1720);display:flex;align-items:center;justify-content:center;font-size:42px}
+.dw-detail-portrait img{width:100%;height:100%;object-fit:cover}
+.dw-combat-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+.dw-statbox{padding:10px;border:1px solid #35556b;border-radius:13px;background:#122838}
+.dw-statbox strong{display:block;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:#91afc0;margin-bottom:3px}
+.dw-statbox span{font-size:17px;font-weight:800}
+.dw-combat-sections{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+.dw-combat-section{padding:10px;border:1px solid #304e63;border-radius:13px;background:#102432;font-size:12px}
+.dw-combat-section b{display:block;margin-bottom:5px}
+.dw-status-row{display:flex;gap:5px;flex-wrap:wrap}
+.dw-status-pill{padding:4px 7px;border:1px solid #45667b;border-radius:999px;background:#0d1e29;font-size:10px}
+.dw-detail-actions{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:10px}
+.dw-detail-actions button{border:1px solid #476a80;border-radius:11px;background:#16364a;color:white;font-weight:700}
+.dw-detail-more{margin-top:9px;border-top:1px solid #29475b;padding-top:9px}
+.dw-detail-more summary{cursor:pointer;font-weight:700;padding:7px 0}
+@media(max-width:430px){.dw-detail-shell{margin:8px 10px}.dw-detail-hero{grid-template-columns:88px 1fr}.dw-detail-portrait{height:88px}.dw-combat-grid,.dw-combat-sections{gap:6px}.dw-statbox span{font-size:15px}}
+</style>
+<style id="dw-checklist-progress">
+.dw-progress-panel{max-width:980px;margin:12px auto;padding:12px;border:1px solid #395970;border-radius:16px;background:#0d1c28;color:#edf7ff}
+.dw-progress-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:10px}
+.dw-progress-stat{padding:10px;border:1px solid #34546a;border-radius:13px;background:#122838;text-align:center}
+.dw-progress-stat strong{display:block;font-size:22px}.dw-progress-stat small{color:#9db5c5}
+.dw-progressbar{height:8px;border-radius:999px;background:#09151e;overflow:hidden;margin-top:7px;border:1px solid #29475a}
+.dw-progressbar>i{display:block;height:100%;background:currentColor}
+.dw-check-filters{display:flex;gap:6px;overflow:auto;padding:9px 0 3px}
+.dw-check-filters button{white-space:nowrap;padding:6px 10px;border:1px solid #426279;border-radius:999px;background:#122838;color:#dceefa;font-size:11px}
+.dw-check-filters button.active{background:#254b63;color:white}
+.dw-check-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:7px;margin-top:9px}
+.dw-check-row{padding:9px;border:1px solid #304e63;border-radius:12px;background:#112635}
+.dw-check-actions{display:flex;gap:5px;margin-top:7px}.dw-check-actions button{min-height:34px;flex:1;border:1px solid #426279;border-radius:9px;background:#0d202d;color:#dceefa;font-size:10px}
+.dw-check-actions button.on{background:#28526b;color:white}
+@media(max-width:480px){.dw-progress-stat strong{font-size:18px}.dw-check-grid{grid-template-columns:1fr}}
+</style>
+<style id="dw-progress-sync">
+.dw-progress-mini{display:flex;gap:4px;flex-wrap:wrap;margin-top:6px}
+.dw-progress-mini button{min-height:30px;padding:4px 7px;border:1px solid #3e6075;border-radius:999px;background:#0d202c;color:#9eb8c8;font-size:10px}
+.dw-progress-mini button.on{background:#28536b;color:#fff;border-color:#5b8199}
+.dw-progress-badge{display:inline-flex;align-items:center;justify-content:center;min-width:24px;height:24px;border:1px solid #3f6075;border-radius:999px;background:#102533;color:#9fb8c8;font-size:11px}
+.dw-progress-badge.on{background:#28536b;color:#fff}
+</style>
+<style id="dw-spoiler-system">
+#dwSpoilerControl{max-width:980px;margin:10px auto;padding:11px 12px;border:1px solid #3b596f;border-radius:15px;background:#0e202d;color:#eaf6ff}
+#dwSpoilerControl select{margin-left:6px;padding:7px;border-radius:9px;border:1px solid #45667b;background:#132b3b;color:white}
+.dw-spoiler-locked{position:relative!important;filter:none!important}
+.dw-spoiler-locked>*:not(.dw-spoiler-cover){visibility:hidden!important}
+.dw-spoiler-cover{visibility:visible!important;position:absolute!important;inset:0!important;z-index:30!important;display:flex!important;align-items:center!important;justify-content:center!important;flex-direction:column!important;gap:8px!important;padding:14px!important;border:1px solid #405e73!important;border-radius:inherit!important;background:linear-gradient(145deg,#102634,#08151e)!important;color:#e5f3fb!important;text-align:center!important}
+.dw-spoiler-cover button{padding:7px 10px;border:1px solid #52758b;border-radius:10px;background:#193a4e;color:white}
+.dw-secret{filter:blur(7px);user-select:none}
+</style></head><body><div style="max-width:980px;margin:10px auto;padding:9px 12px;border:1px solid #34536a;border-radius:12px;background:#102433;color:#dbeefa;font-size:12px"><b>V0.32:</b> Seen, Defeated and Favorite are now shared app-wide. Creature cards expose compact progress controls and Checklist refreshes immediately when any state changes.</div><div style="max-width:980px;margin:10px auto;padding:9px 12px;border:1px solid #34536a;border-radius:12px;background:#102433;color:#dbeefa;font-size:12px"><b>V0.32:</b> Combat-first detail layout added: HP and Power Level lead, followed by weakness/resistance/statuses and location. Variants, drops and verification move into secondary detail.</div><div style="max-width:980px;margin:10px auto;padding:9px 12px;border:1px solid #34536a;border-radius:12px;background:#102433;color:#dbeefa;font-size:12px"><b>V0.32:</b> Family identity is now applied directly to rendered creature cards/details. Named uniques receive a separate “Unique” cue without being collapsed into ordinary variants.</div><div id="dwMobileTop"><b>🐉 Dragonwilds Companion</b><span>V0.32 · 1.0 data</span></div><div id="dwIntegrationBanner" style="max-width:980px;margin:10px auto;padding:10px 12px;border:1px solid #3b5b73;border-radius:12px;background:#102333;color:#dff1ff;font-size:12px"><b>V0.32 Navigation:</b> Bestiary ↔ Map context is now linked. Selecting a creature stores the map filter locally; map-layer cards can jump back to matching bestiary entries.</div>
+<div style="max-width:980px;margin:10px auto;padding:9px 12px;border:1px solid #34536a;border-radius:12px;background:#102433;color:#dbeefa;font-size:12px"><b>V0.32 Data pass:</b> 1.0 roster audit underway. Confirmed combat data is promoted; conflicting or unavailable status thresholds remain explicitly Unknown rather than guessed.</div><main class="app"><div class="top"><h1>Dragonwilds Bestiary</h1><span class="tag">V0.32 · 1.0 DATA</span></div>
+<section id="bestiary" class="section active"><input id="q" class="search" placeholder="Search creature, alias or region…"><div id="filterbar" class="filters"><button class="chip active" data-filter="all">All</button><button class="chip" data-filter="boss">Bosses</button><button class="chip" data-filter="variants">Variants</button><button class="chip" data-filter="favorite">Favorites</button><button class="chip" data-filter="defeated">Defeated</button></div><div id="list" class="grid"></div></section>
+<section id="map" class="section"><div class="maptoolbar"><b>Ashenfall map · V0.9 data layer</b><button id="resetMap">Reset view</button></div><div class="filters"><button class="chip active" id="mapAll">All visible</button><button class="chip" id="mapSelected">Only selected</button><button class="chip" id="mapBoss">Bosses</button><button class="chip" id="mapHabitats">Habitats</button></div><div class="legend"><span><i style="background:#d9ad55"></i>spawn cluster</span><span><i style="background:#c6655d"></i>boss/unique</span><span><i style="background:#8c7440"></i>habitat</span></div><div class="density"><span>Marker density</span><input id="density" type="range" min="1" max="3" value="1"><b id="densityLabel">Low</b></div><div class="mapwrap"><div class="map" id="mapbox"><span class="region" style="left:10%;top:15%">Temple Woods</span><span class="region" style="right:12%;top:20%">Fellhollow</span><span class="region" style="left:14%;bottom:20%">Fractured Plains</span><span class="region" style="right:10%;bottom:16%">Umbral Sands</span><div class="habitat" style="left:13%;top:25%;width:30%;height:25%"></div><button class="cluster" data-name="Giant Rat" style="left:22%;top:31%">18</button><button class="cluster" data-name="Giant Rat" style="left:50%;top:48%">27</button><button class="cluster" data-name="Dire Wolf" style="left:67%;top:20%">9</button><span class="pin boss" data-creature="kuldra" style="left:75%;top:62%"></span><span class="pin" data-creature="zogre" style="left:40%;top:72%"></span><span class="pin dot hiddenpin" data-creature="rat" style="left:28%;top:38%"></span><span class="pin dot hiddenpin" data-creature="rat" style="left:31%;top:42%"></span><span class="pin dot hiddenpin" data-creature="rat" style="left:36%;top:36%"></span><span class="pin dot hiddenpin" data-creature="wolf" style="left:70%;top:27%"></span><span class="pin dot hiddenpin" data-creature="wolf" style="left:74%;top:30%"></span><div class="zoom"><button id="zin">+</button><button id="zout">−</button></div><div id="mapsheet" class="sheet"></div></div></div><div id="zoomlabel" class="mapnote">World view · production clustering rules active. Exact coordinates remain in the map-data pass.</div></section>
+<section id="checklist" class="section"><div class="progression"><b>Spoiler progression</b><div class="small">Controls what late-game entries and map markers are revealed.</div><select id="progression"><option value="early">Early game</option><option value="mid">Mid game</option><option value="late">Late game</option><option value="end">Endgame / reveal all</option></select></div><div class="check"><div><b>Prototype progress</b><div class="small">Encountered and defeated tracking</div></div><b id="count">Roster progress</b></div><div class="progress"><b id="bar"></b></div><div id="checks"></div></section></main>
+<nav class="bottom"><button class="nav active" data-tab="bestiary">☷ Bestiary</button><button class="nav" data-tab="map">⌖ Map</button><button class="nav" data-tab="checklist">✓ Checklist</button></nav>
+<div class="modal" id="modal"><div class="detail"><button class="back" id="back">← Bestiary</button><div id="detail"></div></div></div>
+<script>
+const creatures=[
+{id:'rat',name:'Giant Rat',icon:'🐀',type:'Wildlife',hp:'50 / 100 / 162 / 225 / 288',pl:'PL1–PL5',weak:'Stab',resist:'Crush',region:'Multiple regions / Dragonkin Vaults',variants:['PL1 · 50 HP · Temple Woods','PL2 · 100 HP · Bramblemead Valley','PL3 · 162 HP · Fractured Plains','PL4 · 225 HP · some Dragonkin Vaults','PL5 · 288 HP · some Dragonkin Vaults'],difficulty:['Five documented power-level versions'],statuses:{Bleed:'Unknown',Poison:'Unknown',Burning:'Unknown'},drops:'Raw Rat Meat ×1 · Coarse Animal Fur ×1 · Animal Hide Scraps ×1 · Small Animal Fang ×1',location:'Common rat with broad regional/vault distribution. Dense spawns should remain clustered on the map.',verified:'1.0 reference · verified Sep 24, 2026'},
+{id:'ratking',name:'Rat King',icon:'👑',type:'Boss',hp:'280 / 805',pl:'PL2 / PL5',weak:'Stab',resist:'Crush',region:'Vertentis Kara / Kalistrakthen Kara',variants:['Vertentis Kara · PL2 · 280 HP','Kalistrakthen Kara · PL5 · 805 HP'],difficulty:['Two location-linked power levels'],statuses:{Bleed:'Unknown',Poison:'Unknown',Burning:'Unknown'},drops:'3× each: Raw Rat Meat, Coarse Animal Fur, Animal Hide Scraps, Small Animal Fang',location:'Whispering Swamp vault and Emberwood vault. One bestiary page with two versions.',verified:'1.0 reference · verified Sep 22, 2026'},
+{id:'plagueking',name:'Plague King',icon:'☣️',type:'Boss',hp:'300 / 488',pl:'PL2 / PL3',weak:'Crush',resist:'Stab',region:'Whispering Swamp / Bloodblight Swamp',variants:['PL2 · 300 HP · Whispering Swamp / Vertentis Kara','PL3 · 488 HP · Bloodblight Swamp / Kletterbuja Kara'],difficulty:['Two documented versions'],statuses:{Bleed:'Unknown',Poison:'Immune',Burning:'Unknown'},drops:'Five-material drop table; exact quantities/rates remain in deep-data pass.',location:'Roaming swamp encounter plus two vault contexts.',verified:'1.0 reference · verified Sep 23, 2026'},
+{id:'putridrat',name:'Putrid Rat',icon:'🐀',type:'Rat',hp:'120 / 195',pl:'PL2 / PL3',weak:'Crush',resist:'Stab',region:'Whispering Swamp / Bloodblight Swamp',variants:['PL2 · 120 HP','PL3 · 195 HP'],difficulty:['Two documented power levels'],statuses:{Bleed:'Unknown',Poison:'Immune',Burning:'Unknown'},drops:'Pending deep-data pass',location:'Swamp rat family; linked mechanically to Plague King.',verified:'Current 1.0 reference'},
+{id:'hulk',name:'Vault Guardian Hulk',icon:'🗿',type:'Vault Guardian',hp:'TBA / 390 / 490 / 690',pl:'PL2–PL5',weak:'Crush',resist:'None listed',region:'Dragonkin Vaults',variants:['PL2 · HP not verified','PL3 · 390 HP','PL4 · 490 HP','PL5 · 690 HP'],difficulty:['Vault-linked scaling'],statuses:{Bleed:'Immune',Poison:'Immune',Burning:'Immune'},drops:'Stone guaranteed; Rune Essence and Vault Shards on additional rolls.',location:'Appears across vaults in Brynmoor, Ghornfell and Fellhollow.',verified:'1.0 reference · unknown PL2 HP preserved'},
+{id:'sentinel',name:'Vault Guardian Sentinel',icon:'🎯',type:'Vault Guardian',hp:'TBA / 325 / 450',pl:'PL2–PL4',weak:'Crush',resist:'None listed',region:'Dragonkin Vaults',variants:['PL2 · HP not verified','PL3 · 325 HP','PL4 · 450 HP'],difficulty:['Vault-linked scaling'],statuses:{Bleed:'Immune',Poison:'Immune',Burning:'Immune'},drops:'Stone guaranteed; Rune Essence and Vault Shards on additional rolls.',location:'Ranged vault guardian across Brynmoor, Ghornfell and Fellhollow.',verified:'1.0 reference · unknown PL2 HP preserved'},
+{id:'overlord',name:'Vault Overlord',icon:'👑',type:'Boss',hp:'1,300 / 2,875',pl:'PL2 / PL5',weak:'Unknown / Crush',resist:'None listed',region:'Crasorak Kara / Skekven Kara',variants:['PL2 · 1,300 HP · weakness not filled','PL5 · 2,875 HP · Crush weakness'],difficulty:['Two vault versions'],statuses:{Bleed:'Unknown',Poison:'Unknown',Burning:'Unknown'},drops:'Vault rewards pending deep-data pass',location:'Two Dragonkin Vault boss encounters.',verified:'Current 1.0 boss roster'},
+{id:'archon',name:'Vault Archon',icon:'🔮',type:'Boss',hp:'3,100',pl:'PL2',weak:'Unknown',resist:'Unknown',region:'Thishepen Kara',variants:[],difficulty:['PL2 documented'],statuses:{Bleed:'Unknown',Poison:'Unknown',Burning:'Unknown'},drops:'Vault rewards pending',location:'Thishepen Kara unique vault boss.',verified:'1.0 reference · blank defensive fields preserved'},
+{id:'incin',name:'Vault Incinerator',icon:'🔥',type:'Boss',hp:'2,112',pl:'PL3',weak:'Water',resist:'Fire',region:'Takla Kara',variants:[],difficulty:['PL3 documented'],statuses:{Bleed:'Immune',Poison:'Immune',Burning:'Immune'},drops:'Vault Shards; Paladin armour and wild scout shortbow recipes are associated with the vault.',location:'Takla Kara, Fractured Plains.',verified:'1.0 · updated Sep 24, 2026'},
+{id:'corruptor',name:'Vault Corruptor',icon:'☠️',type:'Boss',hp:'2,925',pl:'PL4',weak:'Water',resist:'Fire',region:'Skeklac Kara',variants:[],difficulty:['PL4 documented'],statuses:{Bleed:'Immune',Poison:'Immune',Burning:'Immune'},drops:'Vault rewards pending',location:'Skeklac Kara unique vault boss.',verified:'1.0 · updated Sep 2026'},
+{id:'pyro',name:'Vault Pyroclast',icon:'🌋',type:'Boss',hp:'2,925',pl:'PL4',weak:'Water',resist:'Fire',region:'Chaktan Kara',variants:[],difficulty:['PL4 documented'],statuses:{Bleed:'Immune',Poison:'Immune',Burning:'Immune'},drops:'Vault rewards pending',location:'Chaktan Kara unique vault boss.',verified:'1.0 · updated Sep 2026'},
+{id:'striker',name:'Vault Striker',icon:'⚡',type:'Boss',hp:'3,738',pl:'PL5',weak:'Unknown',resist:'Unknown',region:'Kalistrakthen Kara',variants:[],difficulty:['PL5 documented'],statuses:{Bleed:'Unknown',Poison:'Unknown',Burning:'Unknown'},drops:'Vault rewards pending',location:'Kalistrakthen Kara unique vault boss.',verified:'1.0 · blank defensive fields preserved'},
+{id:'zogre',name:'Zogre',icon:'🧟',imageStatus:'Needed / Missing · own gameplay screenshot preferred',screenshotNeeded:'Yes',type:'Boss',hp:'4,200 / 6,000',pl:'PL5 / PL6',weak:'Crush',resist:'Slash · Stab · Air',region:'Fellhollow / Dowdun Reach',variants:['Fellhollow · 4,200 HP','Dowdun Reach · 6,000 HP'],difficulty:['Location-linked boss versions'],statuses:{Bleed:'Unknown',Poison:'Unknown',Burning:'Unknown'},drops:'Pending deep-data pass',location:'Generic Zogre page; named Ulgo remains a linked unique encounter.',verified:'Current 1.0 reference'},
+{id:'ulgo',name:'Ulgo the Zogre',alias:'Ulgo',icon:'🧟',imageStatus:'Needed / Missing · unique encounter screenshot',screenshotNeeded:'Yes',type:'Named Unique',hp:'4,200',pl:'PL5',weak:'Crush',resist:'Slash · Stab · Air',region:'Coalridge Pass',variants:[],difficulty:['Named unique encounter'],statuses:{Bleed:'Unknown',Poison:'Unknown',Burning:'Unknown'},drops:'Unique/quest drop table pending verification',location:'Coalridge Pass; linked to Zogre family but gets its own unique page.',verified:'Named unique classification'},
+{id:'radiant',name:'The Radiant',alias:'Red Dragon',icon:'🐉',type:'Dragon Boss',hp:'5,000',pl:'Late-game boss',weak:'Water',resist:'Fire',region:'Umbral Sands',variants:[],difficulty:['Named Red Dragon quest encounter'],statuses:{Bleed:'Immune',Poison:'Unknown',Burning:'Immune'},drops:'Pending verification',location:'Umbral Sands quest encounter; Red Dragon retained as searchable alias.',verified:'1.0 combat profile verified Sep 2026 · numeric Poison threshold not claimed'},
+,{id:'garouking',name:'Garou King',icon:'🐺',imageStatus:'Candidate / Temporary · current guide imagery available; clean own screenshot preferred',screenshotNeeded:'Yes',type:'Mini Boss',hp:'1,035',pl:'PL5',weak:'Crush',resist:'Stab',region:'Highlands Castle · Stormtouched Highlands',variants:[],difficulty:['PL5 documented'],statuses:{Bleed:'Unknown',Poison:'Unknown',Burning:'Unknown'},drops:'Garou Pack · Tainted King’s Token (guaranteed); detailed table pending',location:'Highlands Castle. Weak point: Head. Tower-shield stance must be broken; one attack can be lethal.',verified:'1.0 · verified Sep 21, 2026'},
+{id:'skelwarrior',name:'Skeletal Warrior',icon:'💀',type:'Undead / Rotsworn',hp:'150',pl:'PL5 profile',weak:'Air · Stab',resist:'Fire',region:'Skekven Kara / other undead areas',variants:[],difficulty:['PL5 profile documented'],statuses:{Bleed:'Unknown',Poison:'Unknown',Burning:'Unknown'},drops:'Skeleton Pack · Soul Fragment · 1–2 Undead Bone guaranteed',location:'Documented in Skekven Kara; broader spawn mapping remains map-data pass.',verified:'1.0 PL5 profile'},
+{id:'skelarcher',name:'Skeletal Archer',icon:'🏹',type:'Undead / Rotsworn',hp:'460',pl:'PL5 profile',weak:'Stab · Air',resist:'Fire · Ranged',region:'Skekven Kara / other undead areas',variants:[],difficulty:['PL5 profile documented'],statuses:{Bleed:'Unknown',Poison:'Unknown',Burning:'Unknown'},drops:'Skeleton Pack · Soul Fragment · 1–2 Undead Bone · Bronze Arrows; rare cowl documented',location:'Documented in Skekven Kara.',verified:'1.0 PL5 profile'},
+{id:'skelnecro',name:'Skeletal Necromancer',icon:'🪄',type:'Undead / Rotsworn',hp:'575',pl:'PL5 profile',weak:'Crush · Water',resist:'Air · Fire',region:'Skekven Kara / other undead areas',variants:[],difficulty:['PL5 profile documented'],statuses:{Bleed:'Unknown',Poison:'Unknown',Burning:'Unknown'},drops:'Skeleton Pack · Soul Fragment · 1–2 Undead Bone guaranteed',location:'Can summon Skeletal Warriors; source gives no verified summon cap/cooldown.',verified:'1.0 PL5 profile'},
+{id:'skelhoplite',name:'Skeletal Hoplite',icon:'🛡️',type:'Undead / Rotsworn',hp:'1,380',pl:'PL5 profile',weak:'Crush · Air',resist:'Fire · Slash · Stab',region:'Skekven Kara / other undead areas',variants:[],difficulty:['PL5 profile documented'],statuses:{Bleed:'Unknown',Poison:'Unknown',Burning:'Unknown'},drops:'Skeleton Pack · Soul Fragment · 1–2 Undead Bone; Sundering Spiked Slab 5/100 documented',location:'Heavy skeletal profile documented in Skekven Kara.',verified:'1.0 PL5 profile'},
+{id:'skelmarauder',name:'Skeletal Marauder',icon:'☠️',type:'Undead / Rotsworn',hp:'690',pl:'PL5 profile',weak:'Crush · Earth',resist:'Fire',region:'Skekven Kara / other undead areas',variants:[],difficulty:['PL5 profile documented'],statuses:{Bleed:'Unknown',Poison:'Unknown',Burning:'Unknown'},drops:'Skeleton Pack · Soul Fragment · 1–2 Undead Bone; Tattered Time-Lost Cloth 1/100 documented',location:'Documented in Skekven Kara.',verified:'1.0 PL5 profile'},
+{id:'gobthug',name:'Goblin Thug',icon:'👺',type:'Goblin',hp:'Needs 1.0 verification',pl:'Needs verification',weak:'Needs verification',resist:'Needs verification',region:'Scorned Wilderness / 1.0 content',variants:[],difficulty:[],statuses:{Bleed:'Unknown',Poison:'Unknown',Burning:'Unknown'},drops:'Needs 1.0 verification',location:'Confirmed as a distinct enemy type in the official 1.0 release notes.',verified:'Official 1.0 enemy type'},
+{id:'gobpoison',name:'Goblin Poisonshot Archer',icon:'🏹',type:'Goblin',hp:'Needs 1.0 verification',pl:'Needs verification',weak:'Needs verification',resist:'Needs verification',region:'1.0 content',variants:[],difficulty:[],statuses:{Bleed:'Unknown',Poison:'Unknown',Burning:'Unknown'},drops:'Needs 1.0 verification',location:'Confirmed as a distinct enemy type in the official 1.0 release notes.',verified:'Official 1.0 enemy type'},
+{id:'garouexile',name:'Garou Exile',icon:'🐺',type:'Garou',hp:'Needs 1.0 verification',pl:'Needs verification',weak:'Needs verification',resist:'Needs verification',region:'1.0 content',variants:[],difficulty:[],statuses:{Bleed:'Unknown',Poison:'Unknown',Burning:'Unknown'},drops:'Needs 1.0 verification',location:'Confirmed as a distinct enemy type in the official 1.0 release notes.',verified:'Official 1.0 enemy type'},
+{id:'garoulightning',name:'Garou Lightning Berserker',icon:'⚡',type:'Garou',hp:'Needs 1.0 verification',pl:'Needs verification',weak:'Needs verification',resist:'Needs verification',region:'1.0 content',variants:[],difficulty:[],statuses:{Bleed:'Unknown',Poison:'Unknown',Burning:'Unknown'},drops:'Needs 1.0 verification',location:'Confirmed as a distinct enemy type in the official 1.0 release notes.',verified:'Official 1.0 enemy type'},
+{id:'reanimator',name:'Rotsworn Reanimator',icon:'🧟',type:'Undead / Rotsworn',hp:'Needs 1.0 verification',pl:'Needs verification',weak:'Needs verification',resist:'Needs verification',region:'1.0 content',variants:[],difficulty:[],statuses:{Bleed:'Unknown',Poison:'Unknown',Burning:'Unknown'},drops:'Needs 1.0 verification',location:'Confirmed as a distinct enemy type in the official 1.0 release notes.',verified:'Official 1.0 enemy type'},
+{id:'blightshot',name:'Skeletal Blightshot',icon:'🏹',type:'Undead / Rotsworn',hp:'Needs 1.0 verification',pl:'Needs verification',weak:'Needs verification',resist:'Needs verification',region:'1.0 content',variants:[],difficulty:[],statuses:{Bleed:'Unknown',Poison:'Unknown',Burning:'Unknown'},drops:'Needs 1.0 verification',location:'Confirmed as a distinct enemy type in the official 1.0 release notes.',verified:'Official 1.0 enemy type'}
+
+,{id:'bkw',name:'Black Knight Warrior',icon:'⚔️',type:'Black Knight',hp:'Needs verification',pl:'PL6 region',weak:'Needs verification',resist:'Needs verification',region:'Dowdun Reach',variants:[],difficulty:['Dowdun Reach is a PL6 region'],statuses:{Bleed:'Unknown',Poison:'Unknown',Burning:'Unknown'},drops:'Needs verification',location:'37 mapped spawn locations in the current Ashenfall map dataset.',verified:'1.0 map verified'}
+,{id:'elitebk',name:'Elite Black Knight',icon:'🛡️',type:'Black Knight',hp:'Needs verification',pl:'PL6 region',weak:'Needs verification',resist:'Needs verification',region:'Dowdun Reach',variants:[],difficulty:['Dowdun Reach is a PL6 region'],statuses:{Bleed:'Unknown',Poison:'Unknown',Burning:'Unknown'},drops:'Needs verification',location:'6 current mapped locations; elite two-handed Black Knight profile.',verified:'1.0 map verified'}
+,{id:'bkguardian',name:'Black Knight Guardian',icon:'🛡️',type:'Black Knight',hp:'Needs verification',pl:'PL6 region',weak:'Needs verification',resist:'Needs verification',region:'Dowdun Reach',variants:[],difficulty:[],statuses:{Bleed:'Unknown',Poison:'Unknown',Burning:'Unknown'},drops:'Needs verification',location:'14 mapped spawn locations.',verified:'1.0 map verified'}
+,{id:'bksniper',name:'Black Knight Sniper',icon:'🏹',type:'Black Knight',hp:'Needs verification',pl:'PL6 region',weak:'Needs verification',resist:'Needs verification',region:'Dowdun Reach',variants:[],difficulty:[],statuses:{Bleed:'Unknown',Poison:'Unknown',Burning:'Unknown'},drops:'Needs verification',location:'16 mapped spawn locations.',verified:'1.0 map verified'}
+,{id:'bkcrusader',name:'Black Knight Crusader',icon:'✝️',type:'Black Knight',hp:'Needs 1.0 verification',pl:'Needs verification',weak:'Needs verification',resist:'Needs verification',region:'1.0 content',variants:[],difficulty:[],statuses:{Bleed:'Unknown',Poison:'Unknown',Burning:'Unknown'},drops:'Needs verification',location:'Distinct enemy type added in 1.0.',verified:'Official 1.0 enemy type'}
+,{id:'blazingbk',name:'Blazing Black Knight',icon:'🔥',type:'Black Knight',hp:'Needs 1.0 verification',pl:'Needs verification',weak:'Needs verification',resist:'Needs verification',region:'1.0 content',variants:[],difficulty:[],statuses:{Bleed:'Unknown',Poison:'Unknown',Burning:'Unknown'},drops:'Needs verification',location:'6 mapped locations in the current map dataset; distinct 1.0 enemy type.',verified:'Official 1.0 enemy type'}
+,{id:'bktitan',name:'Black Knight Titan',icon:'👑',image:'https://es.gizmodo.com/app/uploads/2026/04/Gizmodo-27-1200x675.jpg',imageStatus:'Candidate / Temporary · gameplay press screenshot',screenshotNeeded:'Yes',type:'World Boss',hp:'14,000',pl:'PL6',weak:'Crush · Water',resist:'Fire · Slash',region:'The Bastion · Dowdun Reach',variants:[],difficulty:['PL6 world boss'],statuses:{Bleed:'Immune',Poison:'Immune',Burning:'Immune'},drops:'Broken Titan’s Wrath · 20–30 PL6 Ascension Shards always; full table available in source.',location:'Black Knight’s Fortress finale at The Bastion.',verified:'0.12.1 data · current Sep 2026'}
+,{id:'greendragon',name:'Green Dragon',icon:'🐉',type:'Dragon Mini Boss',hp:'Needs verification',pl:'PL5',weak:'Needs verification',resist:'Needs verification',region:'Fellhollow / late encounters',variants:['Blightscale linked unique'],difficulty:['PL5 base profile'],statuses:{Bleed:'Unknown',Poison:'Unknown',Burning:'Unknown'},drops:'Green Dragonhide · Ascension Shards documented; full table pending',location:'Current data treats Green Dragon as a PL5 miniboss; also appears in late-game Crucibles.',verified:'Current database'}
+,{id:'blightscale',name:'Blightscale the Lesser Green Dragon',icon:'🐲',type:'Named Unique',hp:'Needs verification',pl:'PL5 relationship',weak:'Needs verification',resist:'Needs verification',region:'Ashenfall',variants:[],difficulty:[],statuses:{Bleed:'Unknown',Poison:'Unknown',Burning:'Unknown'},drops:'Needs verification',location:'One mapped encounter; linked to the Green Dragon family but kept as its own named unique page.',verified:'1.0 map verified'}
+,{id:'bluedragon',name:'Blue Dragon',icon:'🐉',type:'Dragon Mini Boss',hp:'Needs verification',pl:'PL6',weak:'Needs verification',resist:'Needs verification',region:'The Menagerie / Garrison · Dowdun Reach',variants:[],difficulty:['PL6 region'],statuses:{Bleed:'Unknown',Poison:'Unknown',Burning:'Unknown'},drops:'Blue Dragonhide 6–8 · Dragon Blood 8 · Dragon Tooth 3–5 · Blue Dragon Scale 5–8 · Infernal Fragment 40–50 · PL6 Ascension Shard 15–20',location:'4 mapped locations; documented in The Menagerie and The Garrison.',verified:'Current Sep 2026 guide'}
+,{id:'blackdragon',name:'Black Dragon',icon:'🐲',type:'Dragon',hp:'Needs 1.0 verification',pl:'Late / endgame',weak:'Needs verification',resist:'Needs verification',region:'Scorned Wilderness / 1.0',variants:[],difficulty:['1.0 late-game creature'],statuses:{Bleed:'Unknown',Poison:'Unknown',Burning:'Unknown'},drops:'Needs 1.0 verification',location:'Black Dragons were added with 1.0.',verified:'Official 1.0 enemy family',spoiler:true}
+,{id:'gobwarrior',name:'Goblin Warrior',icon:'👺',type:'Goblin',hp:'Needs verification',pl:'Variable',weak:'Needs verification',resist:'Needs verification',region:'Ashenfall',variants:[],difficulty:['Multiple regions / progression tiers'],statuses:{Bleed:'Unknown',Poison:'Unknown',Burning:'Unknown'},drops:'Needs verification',location:'55 mapped locations in the current map dataset.',verified:'1.0 map verified'}
+,{id:'gobarcher',name:'Goblin Archer',icon:'🏹',type:'Goblin',hp:'Needs verification',pl:'Variable',weak:'Needs verification',resist:'Needs verification',region:'Ashenfall',variants:[],difficulty:['Multiple regions / progression tiers'],statuses:{Bleed:'Unknown',Poison:'Unknown',Burning:'Unknown'},drops:'Needs verification',location:'32 mapped locations in the current map dataset.',verified:'1.0 map verified'}
+,{id:'gobrunt',name:'Goblin Runt',icon:'👺',type:'Goblin',hp:'Needs verification',pl:'Variable',weak:'Needs verification',resist:'Needs verification',region:'Ashenfall',variants:[],difficulty:[],statuses:{Bleed:'Unknown',Poison:'Unknown',Burning:'Unknown'},drops:'Needs verification',location:'Current mapped enemy type.',verified:'1.0 map/database'}
+,{id:'gobbruiser',name:'Goblin Bruiser',icon:'👊',type:'Goblin',hp:'Needs verification',pl:'Variable',weak:'Needs verification',resist:'Needs verification',region:'Ashenfall',variants:[],difficulty:[],statuses:{Bleed:'Unknown',Poison:'Unknown',Burning:'Unknown'},drops:'Needs verification',location:'Current mapped enemy type.',verified:'1.0 map/database'}
+,{id:'garouhunter',name:'Garou Hunter',icon:'🏹',type:'Garou',hp:'Needs verification',pl:'Variable',weak:'Needs verification',resist:'Needs verification',region:'Ashenfall',variants:[],difficulty:[],statuses:{Bleed:'Unknown',Poison:'Unknown',Burning:'Unknown'},drops:'Needs verification',location:'55 mapped locations in the current map dataset.',verified:'1.0 map verified'}
+,{id:'garouberserker',name:'Garou Berserker',icon:'🐺',type:'Garou',hp:'Needs verification',pl:'Variable',weak:'Needs verification',resist:'Needs verification',region:'Ashenfall',variants:[],difficulty:[],statuses:{Bleed:'Unknown',Poison:'Unknown',Burning:'Unknown'},drops:'Needs verification',location:'43 mapped locations in the current map dataset.',verified:'1.0 map verified'}
+,{id:'garouthane',name:'Garou Thane',icon:'🐺',type:'Garou',hp:'Needs verification',pl:'Late',weak:'Needs verification',resist:'Needs verification',region:'Ashenfall / late encounters',variants:[],difficulty:[],statuses:{Bleed:'Unknown',Poison:'Unknown',Burning:'Unknown'},drops:'Needs verification',location:'Current map includes Garou Thane; late-game Crucibles can field two at once.',verified:'Current database/map'}
+,{id:'garoudruid',name:'Garou Druid',icon:'🌙',type:'Garou',hp:'Needs verification',pl:'Variable',weak:'Needs verification',resist:'Needs verification',region:'Ashenfall',variants:[],difficulty:[],statuses:{Bleed:'Unknown',Poison:'Unknown',Burning:'Unknown'},drops:'Needs verification',location:'Current database enemy type.',verified:'1.0 database'}
+,{id:'wildcaller',name:'Wildcaller Druid',icon:'🌙',type:'Garou',hp:'Needs 1.0 verification',pl:'Needs verification',weak:'Needs verification',resist:'Needs verification',region:'1.0 content',variants:[],difficulty:[],statuses:{Bleed:'Unknown',Poison:'Unknown',Burning:'Unknown'},drops:'Needs verification',location:'One mapped location; added to the live map with 1.0 content.',verified:'1.0 map verified'}
+
+,{id:'kalworker',name:'Kalphite Worker',icon:'🪲',type:'Kalphite',hp:'Needs verification',pl:'Umbral Sands',weak:'Needs verification',resist:'Needs verification',region:'Umbral Sands',variants:[],difficulty:['Dense regional population'],statuses:{Bleed:'Unknown',Poison:'Unknown',Burning:'Unknown'},drops:'Kalphite materials · exact table pending verification',location:'189 mapped locations in the current map dataset.',verified:'Official Umbral Sands enemy · current map verified'}
+,{id:'kalsoldier',name:'Kalphite Soldier',icon:'🪲',type:'Kalphite',hp:'Needs verification',pl:'Umbral Sands',weak:'Needs verification',resist:'Needs verification',region:'Umbral Sands',variants:[],difficulty:['Regional combat enemy'],statuses:{Bleed:'Unknown',Poison:'Unknown',Burning:'Unknown'},drops:'Kalphite Wing documented in current database; full table pending',location:'98 mapped locations in the current map dataset.',verified:'Official Umbral Sands enemy · current map verified'}
+,{id:'kalguardian',name:'Kalphite Guardian',icon:'🦂',type:'Kalphite',hp:'Needs verification',pl:'Umbral Sands',weak:'Needs verification',resist:'Needs verification',region:'Umbral Sands',variants:[],difficulty:['Heavy Kalphite profile'],statuses:{Bleed:'Unknown',Poison:'Unknown',Burning:'Unknown'},drops:'Kalphite materials · exact table pending verification',location:'Official Umbral Sands enemy; exact spawn-count pass pending.',verified:'Official Umbral Sands enemy'}
+,{id:'kalqueen',name:'Kalphite Queen',icon:'👑',imageStatus:'Candidate / Temporary · full gameplay fight reference available',screenshotNeeded:'Yes',type:'Boss',hp:'5,500',pl:'PL7',weak:'Variable by shade mechanic',resist:'Attack-style immunity rotates by shade',region:'Umbral Sands',variants:[],difficulty:['Named Umbral Sands boss'],statuses:{Bleed:'Unknown',Poison:'Unknown',Burning:'Unknown'},drops:'Kalphite Ichor 6–12 guaranteed; rare rewards include Moonsilk Weave and Crucible Engrams.',location:'Kalphite hive boss encounter in Umbral Sands. Red shade blocks Attack, blue blocks Magic, green blocks Ranged.',verified:'Current database · V0.31 mechanics pass'}
+,{id:'kethaar',name:"KotHaar-Ket",icon:'🗿',type:"Kot'Haar",hp:'Needs verification',pl:'Umbral Sands',weak:'Needs verification',resist:'Needs verification',region:'Umbral Sands / Fight Cave',variants:[],difficulty:['Kot’Haar melee profile'],statuses:{Bleed:'Unknown',Poison:'Unknown',Burning:'Unknown'},drops:'Obsidian/Kot’Haar materials · exact table pending',location:'88 mapped locations in the current map dataset.',verified:'Official Umbral Sands enemy · current map verified'}
+,{id:'xilhaar',name:"KotHaar-Xil",icon:'🔥',type:"Kot'Haar",hp:'Needs verification',pl:'Umbral Sands',weak:'Needs verification',resist:'Needs verification',region:'Umbral Sands / Fight Cave',variants:[],difficulty:['Kot’Haar ranged profile'],statuses:{Bleed:'Unknown',Poison:'Unknown',Burning:'Unknown'},drops:'Obsidian/Kot’Haar materials · exact table pending',location:'70 mapped locations in the current map dataset.',verified:'Official Umbral Sands enemy · current map verified'}
+,{id:'kalhaar',name:"KotHaar-Kal",icon:'🌋',type:"Kot'Haar",hp:'Needs verification',pl:'Umbral Sands',weak:'Needs verification',resist:'Needs verification',region:'Umbral Sands / Fight Cave',variants:[],difficulty:['Kot’Haar elemental profile'],statuses:{Bleed:'Unknown',Poison:'Unknown',Burning:'Unknown'},drops:'Obsidian/Kot’Haar materials · exact table pending',location:'Official Umbral Sands enemy; map count pending direct verification.',verified:'Official Umbral Sands enemy'}
+,{id:'hurhaar',name:"KotHaar-Hur",icon:'🗿',type:"Kot'Haar",hp:'Needs verification',pl:'Current 1.0',weak:'Needs verification',resist:'Needs verification',region:'Umbral Sands',variants:[],difficulty:[],statuses:{Bleed:'Unknown',Poison:'Unknown',Burning:'Unknown'},drops:'Needs verification',location:'82 mapped locations in the current live map dataset.',verified:'Current 1.0 map enemy'}
+,{id:'tokxil',name:'Tok-Xil',icon:'🔥',type:"Kot'Haar Boss",hp:'Needs verification',pl:'Umbral Sands boss',weak:'Needs verification',resist:'Needs verification',region:'Fight Cave · Umbral Sands',variants:[],difficulty:['Named Fight Cave boss/miniboss'],statuses:{Bleed:'Unknown',Poison:'Unknown',Burning:'Unknown'},drops:'Fight Cave rewards · exact table pending',location:'Fight Cave encounter at the base of Fuzan’s Tower.',verified:'Official Umbral Sands boss'}
+,{id:'fuzan',name:'Fuzan',icon:'🐉',image:'https://cdn.minestrator.com/blog/articles/274/6a3a500d47fb0.webp',imageStatus:'Candidate / Temporary · gameplay screenshot',type:'Dragon General',hp:'Needs verification',pl:'Umbral Sands boss',weak:'Needs verification',resist:'Needs verification',region:'Umbral Sands',variants:[],difficulty:['Dragon General boss encounter'],statuses:{Bleed:'Unknown',Poison:'Unknown',Burning:'Unknown'},drops:'Fire Cape progression / boss rewards · exact table pending',location:'Fuzan’s Tower / Fight Cave progression in Umbral Sands.',verified:'Official Umbral Sands Dragon General'}
+,{id:'desertkebbit',name:'Desert Kebbit',icon:'🐇',type:'Wildlife',hp:'Needs verification',pl:'Umbral Sands wildlife',weak:'Needs verification',resist:'Needs verification',region:'Umbral Sands',variants:[],difficulty:[],statuses:{Bleed:'Unknown',Poison:'Unknown',Burning:'Unknown'},drops:'Needs verification',location:'Official Umbral Sands wildlife; exact map-count pass pending.',verified:'Official Umbral Sands wildlife'}
+,{id:'goat',name:'Goat',icon:'🐐',type:'Wildlife',hp:'Needs verification',pl:'Wildlife',weak:'Needs verification',resist:'Needs verification',region:'Umbral Sands',variants:[],difficulty:[],statuses:{Bleed:'Unknown',Poison:'Unknown',Burning:'Unknown'},drops:'Needs verification',location:'86 mapped locations in the current map dataset.',verified:'Official Umbral Sands wildlife · current map verified'}
+,{id:'vulture',name:'Vulture',icon:'🦅',type:'Wildlife',hp:'Needs verification',pl:'Wildlife',weak:'Needs verification',resist:'Needs verification',region:'Umbral Sands',variants:[],difficulty:[],statuses:{Bleed:'Unknown',Poison:'Unknown',Burning:'Unknown'},drops:'Needs verification',location:'152 mapped locations in the current map dataset.',verified:'Official Umbral Sands wildlife · current map verified'}
+
+,{id:'abyssaldemon',name:'Abyssal Demon',icon:'👹',type:'Chthonian / Demon Mini Boss',hp:'1,500',pl:'PL4',weak:'Slash',resist:'Air',region:'Brynmoor / Ghornfell / Fellhollow',variants:[],difficulty:['PL4 documented'],statuses:{Bleed:'Unknown',Poison:'Unknown',Burning:'Unknown'},drops:'Abyssal Spine 45% in current 1.0 data; Abyssal Remains and Ascension Shards also documented.',location:'3 mapped locations: Whispering Swamp, Fractured Plains and Bloodblight Swamp.',verified:'1.0 · current guide verified Sep 2026'}
+,{id:'stormpact',name:'Stormpact Demon',icon:'⚡',type:'Demon',hp:'Needs 1.0 verification',pl:'Needs verification',weak:'Needs verification',resist:'Needs verification',region:'Scorned Wilderness / 1.0 content',variants:[],difficulty:[],statuses:{Bleed:'Unknown',Poison:'Unknown',Burning:'Unknown'},drops:'Needs 1.0 verification',location:'1 mapped open-world location in the current map dataset.',verified:'Official 1.0 enemy type · current map verified'}
+,{id:'shardbound',name:'Shardbound Lesser Demon',icon:'👿',type:'Demon',hp:'Needs verification',pl:'Needs verification',weak:'Needs verification',resist:'Needs verification',region:'Ashenfall',variants:[],difficulty:[],statuses:{Bleed:'Unknown',Poison:'Unknown',Burning:'Unknown'},drops:'Needs verification',location:'4 mapped locations in the current map dataset.',verified:'Current 1.0 map record'}
+,{id:'lesserdemon',name:'Lesser Demon',icon:'👿',type:'Demon',hp:'Needs verification',pl:'Needs verification',weak:'Needs verification',resist:'Needs verification',region:'Ashenfall',variants:[],difficulty:[],statuses:{Bleed:'Unknown',Poison:'Unknown',Burning:'Unknown'},drops:'Needs verification',location:'1 mapped location in the current map dataset.',verified:'Current 1.0 map record'}
+,{id:'hellhound',name:'Hellhound',icon:'🐕‍🔥',type:'Demon / Beast',hp:'Needs verification',pl:'Needs verification',weak:'Needs verification',resist:'Needs verification',region:'Ashenfall',variants:[],difficulty:[],statuses:{Bleed:'Unknown',Poison:'Unknown',Burning:'Unknown'},drops:'Needs verification',location:'22 mapped locations in the current map dataset.',verified:'Current 1.0 map record'}
+,{id:'magezam',name:'Mage of Zamorak',icon:'🧙',type:'Zamorakian',hp:'Needs verification',pl:'Needs verification',weak:'Needs verification',resist:'Needs verification',region:'Ashenfall',variants:[],difficulty:[],statuses:{Bleed:'Unknown',Poison:'Unknown',Burning:'Unknown'},drops:'Needs verification',location:'8 mapped locations in the current map dataset.',verified:'Current 1.0 map record'}
+,{id:'zamaco',name:'Zamorakian Acolyte',icon:'🔻',type:'Zamorakian',hp:'Needs verification',pl:'Needs verification',weak:'Needs verification',resist:'Needs verification',region:'Ashenfall',variants:[],difficulty:[],statuses:{Bleed:'Unknown',Poison:'Unknown',Burning:'Unknown'},drops:'Needs verification',location:'45 mapped locations in the current map dataset.',verified:'Current 1.0 map record'}
+,{id:'direwolf',name:'Dire Wolf',icon:'🐺',type:'Wildlife / Beast',hp:'Needs verification',pl:'Needs verification',weak:'Needs verification',resist:'Needs verification',region:'Ashenfall',variants:[],difficulty:[],statuses:{Bleed:'Unknown',Poison:'Unknown',Burning:'Unknown'},drops:'Needs verification',location:'10 mapped locations in the current map dataset.',verified:'Current 1.0 map record'}
+,{id:'wolf',name:'Wolf',icon:'🐺',type:'Wildlife / Beast',hp:'Needs verification',pl:'Needs verification',weak:'Needs verification',resist:'Needs verification',region:'Ashenfall',variants:[],difficulty:[],statuses:{Bleed:'Unknown',Poison:'Unknown',Burning:'Unknown'},drops:'Needs verification',location:'48 mapped locations in the current map dataset.',verified:'Current 1.0 map record'}
+,{id:'dragonwolf',name:'Dragon Wolf',icon:'🐲',type:'Dragon / Beast',hp:'Needs verification',pl:'Needs verification',weak:'Needs verification',resist:'Needs verification',region:'Ashenfall',variants:[],difficulty:[],statuses:{Bleed:'Unknown',Poison:'Unknown',Burning:'Unknown'},drops:'Needs verification',location:'33 mapped locations in the current map dataset.',verified:'Current 1.0 map record'}
+,{id:'cow',name:'Cow',icon:'🐄',type:'Wildlife',hp:'Needs verification',pl:'Wildlife',weak:'Needs verification',resist:'Needs verification',region:'Ashenfall',variants:[],difficulty:[],statuses:{Bleed:'Unknown',Poison:'Unknown',Burning:'Unknown'},drops:'Needs verification',location:'18 mapped locations in the current map dataset.',verified:'Current 1.0 map record'}
+,{id:'chicken',name:'Chicken',icon:'🐔',type:'Wildlife',hp:'Needs verification',pl:'Wildlife',weak:'Needs verification',resist:'Needs verification',region:'Ashenfall',variants:[],difficulty:[],statuses:{Bleed:'Unknown',Poison:'Unknown',Burning:'Unknown'},drops:'Needs verification',location:'70 mapped locations in the current map dataset.',verified:'Current 1.0 map record'}
+,{id:'kebbit',name:'Kebbit',icon:'🐇',type:'Wildlife',hp:'Needs verification',pl:'Wildlife',weak:'Needs verification',resist:'Needs verification',region:'Ashenfall',variants:[],difficulty:[],statuses:{Bleed:'Unknown',Poison:'Unknown',Burning:'Unknown'},drops:'Needs verification',location:'102 mapped locations in the current map dataset.',verified:'Current 1.0 map record'}
+,{id:'deer',name:'Deer',icon:'🦌',type:'Wildlife',hp:'Needs verification',pl:'Wildlife',weak:'Needs verification',resist:'Needs verification',region:'Ashenfall',variants:[],difficulty:[],statuses:{Bleed:'Unknown',Poison:'Unknown',Burning:'Unknown'},drops:'Needs verification',location:'36 mapped locations in the current map dataset.',verified:'Current 1.0 map record'}
+,{id:'sheep',name:'Sheep',icon:'🐑',type:'Wildlife',hp:'Needs verification',pl:'Wildlife',weak:'Needs verification',resist:'Needs verification',region:'Ashenfall',variants:[],difficulty:[],statuses:{Bleed:'Unknown',Poison:'Unknown',Burning:'Unknown'},drops:'Needs verification',location:'56 mapped locations in the current map dataset.',verified:'Current 1.0 map record'}
+
+,{id:'spectralchinchompa',name:'Spectral Chinchompa',icon:'👻',type:'Spectral Wildlife / Activity',hp:'Needs verification',pl:'Activity creature',weak:'Needs verification',resist:'Needs verification',region:'Ashenfall',variants:[],difficulty:['Special activity / quest creature'],statuses:{Bleed:'Unknown',Poison:'Unknown',Burning:'Unknown'},drops:'Chinchompa Skull item exists in current 1.0; exact creature drop mechanics need verification.',location:'Associated with the Spectral Chinchompas quest/activity introduced in 0.10.1.',verified:'Official 0.10.1 content · still referenced in 1.0.0.5'}
+,{id:'rotsworn',name:'Rotsworn',icon:'☣️',type:'Rotsworn / Undead',hp:'Needs verification',pl:'Fellhollow',weak:'Needs verification',resist:'Needs verification',region:'Fellhollow',variants:[],difficulty:[],statuses:{Bleed:'Unknown',Poison:'Unknown',Burning:'Unknown'},drops:'Needs verification',location:'Fellhollow enemy-family entry; exact subtype/location pass pending.',verified:'Current family entry · subtype verification pending'}
+,{id:'rotswornreanimator2',name:'Rotsworn Reanimator',icon:'🧟',type:'Rotsworn / Undead',hp:'Needs 1.0 verification',pl:'1.0 enemy',weak:'Needs verification',resist:'Needs verification',region:'Scorned Wilderness / late-game content',variants:[],difficulty:['Official 1.0 enemy type'],statuses:{Bleed:'Unknown',Poison:'Unknown',Burning:'Unknown'},drops:'Needs 1.0 verification',location:'Officially added in 1.0; exact map coordinates pending.',verified:'Official 1.0 enemy type'}
+,{id:'blightscale',name:'Blightscale the Lesser Green Dragon',icon:'🐉',type:'Named Unique / Lesser Green Dragon',hp:'Needs verification',pl:'Fellhollow named unique',weak:'Needs verification',resist:'Needs verification',region:'Fellhollow',variants:[],difficulty:['Named unique linked to Green Dragon'],statuses:{Bleed:'Unknown',Poison:'Unknown',Burning:'Unknown'},drops:'Needs verification',location:'Named Fellhollow encounter; keep separate from generic Green Dragon.',verified:'Named unique classification retained'}
+,{id:'greendragon',name:'Green Dragon',icon:'🐲',type:'Chromatic Dragon',hp:'Needs verification',pl:'Fellhollow',weak:'Needs verification',resist:'Needs verification',region:'Fellhollow',variants:[],difficulty:['Lesser Green Dragon encounters documented for Fellhollow'],statuses:{Bleed:'Unknown',Poison:'Unknown',Burning:'Unknown'},drops:'Green dragon progression materials · exact table pending.',location:'Fellhollow lesser-dragon encounters.',verified:'Official Fellhollow content'}
+
+,{id:'kuldra',name:'Kuldra',icon:'🐲',imageStatus:'Candidate / Temporary · 1.0 gameplay references available',screenshotNeeded:'Yes',type:'End-game Boss',hp:'Hidden',pl:'Endgame',weak:'Hidden',resist:'Hidden',region:'Scorned Wilderness',variants:[],difficulty:['Spoiler protected'],statuses:{Bleed:'Hidden',Poison:'Hidden',Burning:'Hidden'},drops:'Hidden',location:'Raid encounter; instanced/interior mapping should not use a fake overworld pin.',verified:'1.0 end-game boss',spoiler:true},
+{id:'velgar',name:'General Velgar',icon:'🐉',image:'https://gamerblurb.com/content/images/2025/04/Dragonwilds-boss.jpg',imageStatus:'Candidate / Temporary · third-party gameplay/reference',type:'World Boss · Dragon',hp:'6,000',pl:'PL4',weak:'None',resist:'None listed',region:'Velgar’s Rise · Fractured Plains',variants:[],difficulty:['Dragon Slayer story boss','Poison-focused encounter with flight phases'],statuses:{Bleed:'Unknown',Poison:'Unknown',Burning:'Unknown'},drops:'Velgar’s Head; Ascension Shards (PL4)',source:'Current boss guide · verified 2026-09-23',spoiler:2,unique:true},
+{id:'imaru',name:'Imaru, the Soul-Eater',icon:'🐉',image:'https://images.steamusercontent.com/ugc/9910008490675945256/AC267295B2946974DF72244979F1DB447791D048/',imageStatus:'Candidate / Temporary · gameplay screenshot',type:'World Boss · Undead Dragon',hp:'14,000',pl:'PL5',weak:'None',resist:'None',region:'Imaru’s Tower · Hope’s Fall · Fellhollow',variants:[],difficulty:['Withering Heights story boss','Rematches require recollecting three curse fragments'],statuses:{Bleed:'Immune',Poison:'Immune',Burning:'Immune'},drops:'Imaru’s Head; Serrated Claw',source:'Current 1.0 boss guide · updated 2026-09-21',spoiler:3,unique:true}
+];
+const auditFamilies=['Vault Guardian','Goblin','Garou','Black Knight','Kalphite','KotHaar','Kot’Haar','Undead / Rotsworn','Dragon'];
+const current10Confirmed=new Set(['Goblin Thug','Goblin Poisonshot Archer','Garou Exile','Garou Lightning Berserker','Skeletal Blightshot','Black Knight Crusader','Blazing Black Knight','Black Dragon']);
+creatures.forEach(c=>{const targeted=auditFamilies.some(f=>(c.type||'').includes(f))||/Vault |Dragon|Garou|Black Knight|Kalphite|KotHaar|Kot’Haar|Skeletal|Goblin/.test(c.name);if(!targeted)return;if(!c.imageStatus){if(current10Confirmed.has(c.name))c.imageStatus='Needed / Missing · current 1.0 enemy confirmed by Jagex';else if((c.type||'').includes('Kalphite')||/KotHaar|Kot’Haar/.test(c.name))c.imageStatus='Good official regional reference · individual creature crop needed';else c.imageStatus='Needed / Missing · own gameplay screenshot preferred';}if(!c.screenshotNeeded)c.screenshotNeeded='Yes';c.imageAudit='V0.31 image promotion';});
+const auditCounts=()=>{let t=creatures.filter(c=>c.imageAudit),cand=t.filter(c=>c.image).length,need=t.filter(c=>c.screenshotNeeded==='Yes').length;return {total:t.length,candidate:cand,needed:need}};
+let state=JSON.parse(localStorage.getItem('dwstate10')||'{}'), filter='all', selected=null, zoom=1;const save=()=>localStorage.setItem('dwstate10',JSON.stringify(state));
+function locked(c){return c.spoiler&&!state.reveal}
+function render(){const ac=auditCounts();if(window.auditSummary)auditSummary.innerHTML=`<div class="auditbox"><b>${ac.total}</b><span>FAMILY ENTRIES AUDITED</span></div><div class="auditbox"><b>${ac.candidate}</b><span>IMAGE CANDIDATES</span></div><div class="auditbox"><b>${ac.needed}</b><span>SCREENSHOTS NEEDED</span></div>`;const term=q.value.toLowerCase();list.innerHTML='';creatures.filter((c,i)=>{let text=(c.name+' '+(c.alias||'')+' '+c.region).toLowerCase();if(!text.includes(term))return false;if(filter==='boss'&&!c.type.toLowerCase().includes('boss'))return false;if(filter==='variants'&&!c.variants.length)return false;if(filter==='favorite'&&!state['f'+i])return false;if(filter==='defeated'&&!state['d'+i])return false;return true}).forEach(c=>{let i=creatures.indexOf(c),l=locked(c),el=document.createElement('div');el.className='creature';el.innerHTML=`<div class="portrait">${l?'🔒':(c.image?`<img src="${c.image}" alt="${c.name}" loading="lazy" onerror="this.parentElement.textContent='${c.icon}'">`:c.icon)}</div><div><div class="name">${l?'Undiscovered Creature':c.name}${c.alias&&!l?` <span class="small">(${c.alias})</span>`:''}</div><div class="meta">${l?'Progression spoiler protected':c.type+' · '+c.region}</div>${!l&&c.imageStatus?`<div class="imgstatus">📷 ${c.imageStatus.split(' · ')[0]}</div>`:''}<div class="stats">${l?'<span class="pill">Reveal when ready</span>':`<span class="pill">❤️ ${c.hp}</span><span class="pill">⚔ ${c.weak}</span>${c.variants.length?'<span class="pill">Variants '+c.variants.length+'</span>':''}`}</div></div><button class="fav" aria-label="favorite">${state['f'+i]?'♥':'♡'}</button>`;el.querySelector('.fav').onclick=e=>{e.stopPropagation();state['f'+i]=!state['f'+i];save();render()};el.onclick=()=>openDetail(c);list.appendChild(el)})}
+q.oninput=render;document.querySelectorAll('#filterbar .chip').forEach(b=>b.onclick=()=>{document.querySelectorAll('#filterbar .chip').forEach(x=>x.classList.remove('active'));b.classList.add('active');filter=b.dataset.filter;render()});
+function statusClass(v){return v==='Immune'?'bad':v==='Unknown'||v==='Hidden'?'unknown':'good'}
+function openDetail(c){selected=c;modal.classList.add('show');if(locked(c)){detail.innerHTML=`<div class="hero">🔒</div><div class="spoiler"><h2>Undiscovered Creature</h2><p class="meta">This entry is beyond your current spoiler progression.</p><button class="reveal" onclick="state.reveal=true;save();openDetail(selected);render();renderChecks()">Reveal anyway</button></div>`;return}detail.innerHTML=`<div class="hero ${c.image?'hasimage':''}">${c.image?`<img src="${c.image}" alt="${c.name}" onerror="this.parentElement.classList.remove('hasimage');this.parentElement.textContent='${c.icon}'">`:c.icon}<span class="verify">${c.verified||c.source||'Needs verification'}</span></div><h2>${c.name}</h2><div class="meta">${c.type} · ${c.region}${c.alias?' · Alias: '+c.alias:''}</div>${c.imageStatus?`<div class="imgstatus">📷 ${c.imageStatus}${c.screenshotNeeded?` · Screenshot needed: ${c.screenshotNeeded}`:''}</div>`:''}<div class="tabs"><button class="tab active" data-p="combat">Combat</button>${c.variants.length?'<button class="tab" data-p="variants">Variants</button>':''}<button class="tab" data-p="difficulty">Difficulty</button><button class="tab" data-p="drops">Drops</button><button class="tab" data-p="location">Location</button></div><div id="panel" class="panel"></div>`;document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));t.classList.add('active');panelFor(c,t.dataset.p)});panelFor(c,'combat')}
+function panelFor(c,p){if(p==='combat')panel.innerHTML=`<div class="rows"><div class="statbox"><span class="small">HP</span><b>${c.hp}</b></div><div class="statbox"><span class="small">Power</span><b>${c.pl}</b></div><div class="statbox"><span class="small">Weakness</span><b>${c.weak}</b></div><div class="statbox"><span class="small">Resistance</span><b>${c.resist}</b></div></div><div style="margin-top:10px">${Object.entries(c.statuses).map(([k,v])=>`<div class="status"><span>${k}</span><b class="${statusClass(v)}">${v}</b></div>`).join('')}</div>`;if(p==='variants')panel.innerHTML=`<select class="select">${c.variants.map(v=>`<option>${v}</option>`).join('')}</select><div class="small">Changing variant will eventually update combat stats, drops and map focus together.</div>`;if(p==='difficulty')panel.innerHTML=`<b>Difficulty / scaling</b><p class="meta">${c.difficulty.join('<br>')}</p><div class="small">We keep difficulty separate from biological/named variants so the same creature is never duplicated unnecessarily.</div>`;if(p==='drops')panel.innerHTML=`<b>Drops</b><p class="meta">${c.drops}</p>`;if(p==='location')panel.innerHTML=`<b>${c.region}</b><p class="meta">${c.location}</p><button class="reveal" onclick="modal.classList.remove('show');switchTab('map');showSelectedMap('${c.id}')">View on map</button>`}
+back.onclick=()=>modal.classList.remove('show');
+function renderChecks(){checks.innerHTML='';let n=0;creatures.forEach((c,i)=>{if(state['d'+i])n++;let el=document.createElement('div');el.className='check';el.innerHTML=`<span>${locked(c)?'🔒 Undiscovered':c.icon+' '+c.name}</span><div class="checks"><button class="toggle ${state['e'+i]?'on':''}">Seen</button><button class="toggle ${state['d'+i]?'on':''}">Defeated</button></div>`;let bs=el.querySelectorAll('button');bs[0].onclick=()=>{state['e'+i]=!state['e'+i];save();renderChecks()};bs[1].onclick=()=>{state['d'+i]=!state['d'+i];if(state['d'+i])state['e'+i]=true;save();renderChecks();render()};checks.appendChild(el)});count.textContent=n+' / '+creatures.length;bar.style.width=(n/creatures.length*100)+'%'}
+function switchTab(id){document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.nav[data-tab]').forEach(n=>n.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelector(`.nav[data-tab="${id}"]`).classList.add('active');if(id==='checklist')renderChecks()}
+document.querySelectorAll('.nav[data-tab]').forEach(b=>b.onclick=()=>switchTab(b.dataset.tab));
+document.querySelectorAll('.cluster').forEach(b=>b.onclick=()=>{mapsheet.classList.add('show');mapsheet.innerHTML=`<b>${b.dataset.name}</b><div class="small">Clustered spawn area. Tap + to reveal more detail without overlapping markers.</div>`});
+zin.onclick=()=>{zoom=Math.min(3,zoom+1);zoomlabel.textContent=zoom===2?'Region view · clusters split only where spacing is safe.':'Local view · individual pins may appear; dense points remain clustered.'};zout.onclick=()=>{zoom=Math.max(1,zoom-1);zoomlabel.textContent=zoom===1?'World view · production clustering rules active. Exact coordinates remain in the map-data pass.':'Region view · clusters split only where spacing is safe.'};
+function showSelectedMap(id){selected=creatures.find(c=>c.id===id);mapsheet.classList.add('show');mapsheet.innerHTML=`<b>${selected.icon} ${selected.name}</b><div class="small">Only-this-creature mode enabled conceptually. Unrelated markers would fade/hide.</div>`}
+mapSelected.onclick=()=>{if(selected)showSelectedMap(selected.id)};mapHabitats.onclick=()=>document.querySelectorAll('.habitat').forEach(x=>x.style.display=x.style.display==='none'?'block':'none');
+function applyDensity(){let v=+density.value;densityLabel.textContent=['','Low','Medium','High'][v];document.querySelectorAll('.hiddenpin').forEach((p,i)=>p.style.display=(v===3||v===2&&i%2===0)?'block':'none');document.querySelectorAll('.cluster').forEach(c=>c.style.transform=`scale(${v===1?1:v===2?.92:.82})`)}
+density.oninput=applyDensity;resetMap.onclick=()=>{zoom=1;density.value=1;applyDensity();zoomlabel.textContent='World view · production clustering rules active. Exact coordinates remain in the map-data pass.';document.querySelectorAll('.faded').forEach(x=>x.classList.remove('faded'));mapsheet.classList.remove('show')};
+function focusCreature(id){document.querySelectorAll('.cluster,.pin,.habitat').forEach(x=>x.classList.add('faded'));document.querySelectorAll(`[data-creature="${id}"]`).forEach(x=>x.classList.remove('faded'));if(id==='rat')document.querySelectorAll('.cluster[data-name="Giant Rat"]').forEach(x=>x.classList.remove('faded'));if(id==='wolf')document.querySelectorAll('.cluster[data-name="Dire Wolf"]').forEach(x=>x.classList.remove('faded'))}
+const oldShowSelectedMap=showSelectedMap;showSelectedMap=function(id){oldShowSelectedMap(id);focusCreature(id)};
+progression.value=state.progression||'early';progression.onchange=()=>{state.progression=progression.value;if(progression.value==='end')state.reveal=true;else state.reveal=false;save();render();renderChecks()};
+applyDensity();render();renderChecks();
+</script><div id="dwMapControls" style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:10px 0;padding:10px;border:1px solid #31485d;border-radius:12px;background:#101d29">
+<span style="font-size:12px">📍 Spawn</span><span style="font-size:12px">◌ Habitat</span><span style="font-size:12px">👑 Boss/Unique</span>
+<label style="font-size:12px;margin-left:auto">Marker density <select id="markerDensity" onchange="localStorage.setItem('dw-marker-density',this.value)"><option>Low</option><option selected>Smart</option><option>High</option></select></label>
+<button onclick="localStorage.removeItem('dw-map-creature');location.hash='#map'" style="font-size:12px">Reset map</button>
+</div><script>
+const DW_MAP_META={
+ version:"1.0",
+ monsterLocations:2957,
+ monsterFilters:112,
+ updated:"2026-09-15",
+ layers:["regions","habitats","spawns"],
+ special:{Kuldra:{type:"raid-entrance",region:"Scorned Wilderness",instancedInterior:true}}
+};
+(function(){
+ const d=localStorage.getItem('dw-marker-density');
+ const el=document.getElementById('markerDensity'); if(el&&d) el.value=d;
+ window.DW_MAP_META=DW_MAP_META;
+})();
+</script>
+<div id="dwRealMap" style="max-width:980px;margin:12px auto;border:1px solid #36516b;border-radius:16px;overflow:hidden;background:#0c1720">
+  <div style="padding:10px 12px;background:#132535;color:#e5f3ff;font-size:12px">
+    <b>V0.31 Ashenfall Map Preview</b> · Temporary reference base layer · Current 1.0 creature pins will replace/extend this reference progressively.
+  </div>
+  <div id="dwMapViewport" style="position:relative;overflow:auto;max-height:70vh;background:#081017;touch-action:pan-x pan-y pinch-zoom">
+    <div style="position:relative;min-width:720px">
+      <img src="https://images.squarespace-cdn.com/content/v1/6694c7917c956c53964034d9/f17dc6ca-f110-40fa-b702-0411f4a45524/Screenshot%2B2025-04-16%2B233808.png?format=1500w" alt="Ashenfall region map reference" style="display:block;width:100%;height:auto;opacity:.96" loading="lazy">
+      <div title="Brynmoor / starter areas" style="position:absolute;left:38%;top:71%;transform:translate(-50%,-50%);font-size:25px">📍</div>
+      <div title="Stormtouched Highlands" style="position:absolute;left:19%;top:24%;transform:translate(-50%,-50%);font-size:25px">📍</div>
+      <div title="Fractured Plains" style="position:absolute;left:54%;top:29%;transform:translate(-50%,-50%);font-size:25px">📍</div>
+      <div title="Bloodblight Swamp" style="position:absolute;left:83%;top:62%;transform:translate(-50%,-50%);font-size:25px">📍</div>
+    </div>
+  </div>
+  <div style="padding:10px 12px;color:#bcd1e2;font-size:11px">
+    This image is a temporary geographic reference from an earlier Ashenfall map. The live tracker reports new 1.0 world art dated Sep 15, 2026; V0.31 therefore does not pretend this older reference is the final 1.0 base layer.
+  </div>
+</div>
+<script>
+window.DW_MAP_SOURCE={
+ currentLiveMap:"https://dragonwilds.th.gl/maps/Ashenfall",
+ liveMapUpdated:"2026-09-15",
+ liveMonsterFilters:112,
+ referenceLayerStatus:"temporary-pre-1.0-geography",
+ finalBaseLayerNeeded:true
+};
+</script>
+<div id="dwStressPanel" style="max-width:980px;margin:12px auto;padding:12px;border:1px solid #38536d;border-radius:16px;background:#0e1c28;color:#e5f2ff">
+ <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+   <b>V0.31 Spawn-Layer Stress Test</b>
+   <select id="dwCreatureFilter" style="margin-left:auto;padding:7px;border-radius:8px;background:#172a3a;color:white;border:1px solid #45617a">
+     <option value="all">All test creatures</option>
+   </select>
+ </div>
+ <div id="dwStressSummary" style="font-size:12px;color:#b8ccdc;margin-top:8px"></div>
+ <div style="margin-top:10px;display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:8px" id="dwStressCards"></div>
+ <div style="font-size:11px;color:#9db4c5;margin-top:10px">High-density species render as clusters/habitats at world scale; unique bosses remain individual 👑 markers. These are verified location counts, not fabricated exact coordinates. Exact coordinate placement will only be added when the source exposes reliable coordinates.</div>
+</div>
+<script>
+const DW_STRESS_DATA=[{"name":"Giant Rat","count":54,"kind":"spawn","cluster":true,"region":"Multiple Ashenfall regions","x":38,"y":70},{"name":"Kalphite Worker","count":189,"kind":"habitat","cluster":true,"region":"Umbral Sands","x":70,"y":47},{"name":"Black Knight Warrior","count":37,"kind":"habitat","cluster":true,"region":"Dowdun Reach / Black Knight territory","x":46,"y":28},{"name":"Zogre","count":4,"kind":"spawn","cluster":false,"region":"Fellhollow + Dowdun Reach","x":57,"y":38},{"name":"Ulgo the Zogre","count":1,"kind":"boss","cluster":false,"region":"Named unique encounter","x":60,"y":36},{"name":"Black Knight Titan","count":1,"kind":"boss","cluster":false,"region":"Black Knight's Fortress","x":48,"y":25},{"name":"Kalphite Queen","count":1,"kind":"boss","cluster":false,"region":"Umbral Sands","x":74,"y":48},{"name":"The Radiant","count":1,"kind":"boss","cluster":false,"region":"Umbral Sands quest encounter","x":79,"y":42},{"name":"Kuldra","count":1,"kind":"raid","cluster":false,"region":"Dragon Gate raid entrance","x":88,"y":22}];
+(function(){
+ const sel=document.getElementById('dwCreatureFilter'), cards=document.getElementById('dwStressCards'), sum=document.getElementById('dwStressSummary');
+ if(!sel||!cards)return;
+ DW_STRESS_DATA.forEach(d=>{const o=document.createElement('option');o.value=d.name;o.textContent=d.name;sel.appendChild(o);});
+ const saved=localStorage.getItem('dw-map-creature'); if(saved&&DW_STRESS_DATA.some(d=>d.name===saved)) sel.value=saved;
+ function draw(){
+   const rows=DW_STRESS_DATA.filter(d=>sel.value==='all'||d.name===sel.value);
+   sum.textContent=rows.reduce((a,d)=>a+d.count,0)+' verified source locations represented across '+rows.length+' test layers';
+   cards.innerHTML=rows.map(d=>`<button onclick="localStorage.setItem('dw-map-creature',${JSON.stringify(d.name)})" style="text-align:left;padding:10px;border-radius:12px;border:1px solid #304b61;background:#132635;color:#eef7ff"><div style="font-size:18px">${d.kind==='boss'||d.kind==='raid'?'👑':d.kind==='habitat'?'◌':'📍'} <b>${d.name}</b></div><div style="font-size:12px;margin-top:4px">${d.count} location${d.count===1?'':'s'} · ${d.region}</div><div style="font-size:11px;color:#a9bfce;margin-top:3px">${d.cluster?'Cluster/habitat at world zoom':'Individual marker'}</div></button>`).join('');
+ }
+ sel.addEventListener('change',()=>{if(sel.value==='all')localStorage.removeItem('dw-map-creature');else localStorage.setItem('dw-map-creature',sel.value);draw();});
+ draw();
+})();
+</script><div id="dwCoordAudit" style="max-width:980px;margin:12px auto;padding:12px;border:1px solid #39566f;border-radius:16px;background:#0d1b27;color:#e8f4ff">
+<b>V0.32 Coordinate Integrity Layer</b>
+<div style="font-size:12px;color:#b9ccda;margin-top:6px">Live tracker spawn counts and individual spawn records are source-backed. Numeric X/Y coordinates are not exposed in the searchable guide payload, so this build refuses to infer coordinates from internal spawn IDs. Tap a source button to open that creature's live interactive tracker.</div>
+<div id="dwLiveLayerGrid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:8px;margin-top:10px"></div>
+</div><script>
+window.DW_LIVE_LAYERS=[{"name":"Giant Rat","count":54,"source":"https://dragonwilds.th.gl/guides/Giant%20Rat","mode":"cluster"},{"name":"Goblin Warrior","count":55,"source":"https://dragonwilds.th.gl/guides/Goblin%20Warrior","mode":"cluster"},{"name":"Garou Hunter","count":55,"source":"https://dragonwilds.th.gl/guides/Garou%20Hunter","mode":"cluster"},{"name":"Skeletal Warrior","count":52,"source":"https://dragonwilds.th.gl/guides/Skeletal%20Warrior","mode":"cluster"},{"name":"Kalphite Worker","count":189,"source":"https://dragonwilds.th.gl/guides/Kalphite%20Worker","mode":"cluster"},{"name":"Kalphite Soldier","count":98,"source":"https://dragonwilds.th.gl/guides/Kalphite%20Soldier","mode":"cluster"},{"name":"KotHaar-Ket","count":88,"source":"https://dragonwilds.th.gl/guides/KotHaar-Ket","mode":"cluster"},{"name":"Vulture","count":152,"source":"https://dragonwilds.th.gl/guides/Vulture","mode":"cluster"},{"name":"Zombie","count":120,"source":"https://dragonwilds.th.gl/guides/Zombie","mode":"cluster"},{"name":"Black Knight Warrior","count":37,"source":"https://dragonwilds.th.gl/guides/Black%20Knight%20Warrior","mode":"cluster"},{"name":"Black Knight Sniper","count":16,"source":"https://dragonwilds.th.gl/guides/Black%20Knight%20Sniper","mode":"cluster"},{"name":"Zogre","count":4,"source":"https://dragonwilds.th.gl/guides/Zogre","mode":"pins-pending"},{"name":"Ulgo the Zogre","count":1,"source":"https://dragonwilds.th.gl/guides/Ulgo%20the%20Zogre","mode":"boss"},{"name":"Garou King","count":1,"source":"https://dragonwilds.th.gl/guides/Garou%20King","mode":"boss"},{"name":"Black Knight Titan","count":1,"source":"https://dragonwilds.th.gl/guides/Black%20Knight%20Titan","mode":"boss"},{"name":"The Radiant","count":1,"source":"https://dragonwilds.th.gl/guides/The%20Radiant","mode":"boss"},{"name":"Black Dragon","count":2,"source":"https://dragonwilds.th.gl/guides/Black%20Dragon","mode":"pins-pending"}];
+(function(){
+ const el=document.getElementById('dwLiveLayerGrid'); if(!el)return;
+ el.innerHTML=DW_LIVE_LAYERS.map(d=>`<a href="${d.source}" target="_blank" rel="noopener" style="text-decoration:none;padding:10px;border:1px solid #304b61;border-radius:12px;background:#132635;color:#edf7ff"><b>${d.mode==='boss'?'👑':d.mode==='cluster'?'◌':'📍'} ${d.name}</b><div style="font-size:12px;margin-top:4px">${d.count} verified location${d.count===1?'':'s'}</div><div style="font-size:10px;color:#9fb8c9;margin-top:4px">Open live spawn tracker ↗</div></a>`).join('');
+})();
+</script><section id="dwMapExpansion" style="max-width:980px;margin:12px auto;padding:12px;border:1px solid #39566f;border-radius:16px;background:#0d1b27;color:#e8f4ff">
+<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"><b>V0.31 Live Map Expansion</b><span id="dwMapExpansionCount" style="font-size:11px;color:#9fb8c9"></span></div>
+<input id="dwMapLayerSearch" placeholder="Filter map layers…" style="box-sizing:border-box;width:100%;margin-top:9px;padding:9px;border-radius:9px;border:1px solid #3b566d;background:#122536;color:#fff">
+<div id="dwMapExpansionGrid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:7px;margin-top:9px"></div>
+<div style="font-size:11px;color:#9fb8c9;margin-top:9px">Counts come from the current 1.0 monster index. Exact X/Y remains intentionally withheld until a coordinate payload can be verified. One-off named encounters remain individual-marker candidates; dense populations default to clusters/habitats.</div>
+</section><script>
+window.DW_MAP_EXPANSION=[{"name":"Spectral Chinchompa","count":26,"mode":"cluster","url":"https://dragonwilds.th.gl/guides/Spectral%20Chinchompa"},{"name":"Spectral Bird","count":10,"mode":"pins","url":"https://dragonwilds.th.gl/guides/Spectral%20Bird"},{"name":"Rotsworn Warrior","count":14,"mode":"cluster","url":"https://dragonwilds.th.gl/guides/Rotsworn%20Warrior"},{"name":"Rotsworn Marauder","count":11,"mode":"cluster","url":"https://dragonwilds.th.gl/guides/Rotsworn%20Marauder"},{"name":"Rotsworn Zombie","count":38,"mode":"cluster","url":"https://dragonwilds.th.gl/guides/Rotsworn%20Zombie"},{"name":"Rotsworn Necromancer","count":2,"mode":"pins","url":"https://dragonwilds.th.gl/guides/Rotsworn%20Necromancer"},{"name":"Rotsworn Reanimator","count":1,"mode":"unique","url":"https://dragonwilds.th.gl/guides/Rotsworn%20Reanimator"},{"name":"Putrid Rat","count":45,"mode":"cluster","url":"https://dragonwilds.th.gl/guides/Putrid%20Rat"},{"name":"Rotridden Rat","count":13,"mode":"cluster","url":"https://dragonwilds.th.gl/guides/Rotridden%20Rat"},{"name":"Zombie Rat","count":5,"mode":"pins","url":"https://dragonwilds.th.gl/guides/Zombie%20Rat"},{"name":"Hellrat","count":53,"mode":"cluster","url":"https://dragonwilds.th.gl/guides/Hellrat"},{"name":"Hellhound","count":22,"mode":"cluster","url":"https://dragonwilds.th.gl/guides/Hellhound"},{"name":"Abyssal Demon","count":3,"mode":"pins","url":"https://dragonwilds.th.gl/guides/Abyssal%20Demon"},{"name":"Shardbound Lesser Demon","count":4,"mode":"pins","url":"https://dragonwilds.th.gl/guides/Shardbound%20Lesser%20Demon"},{"name":"Stormpact Demon","count":1,"mode":"unique","url":"https://dragonwilds.th.gl/guides/Stormpact%20Demon"},{"name":"Lesser Demon","count":1,"mode":"unique","url":"https://dragonwilds.th.gl/guides/Lesser%20Demon"},{"name":"Zamorakian Acolyte","count":45,"mode":"cluster","url":"https://dragonwilds.th.gl/guides/Zamorakian%20Acolyte"},{"name":"Mage of Zamorak","count":8,"mode":"pins","url":"https://dragonwilds.th.gl/guides/Mage%20of%20Zamorak"},{"name":"KotHaar-Hur","count":82,"mode":"cluster","url":"https://dragonwilds.th.gl/guides/KotHaar-Hur"},{"name":"KotHaar-Kal","count":34,"mode":"cluster","url":"https://dragonwilds.th.gl/guides/KotHaar-Kal"},{"name":"Kalphite Guardian","count":15,"mode":"cluster","url":"https://dragonwilds.th.gl/guides/Kalphite%20Guardian"},{"name":"Desert Devil Kebbit","count":99,"mode":"cluster","url":"https://dragonwilds.th.gl/guides/Desert%20Devil%20Kebbit"},{"name":"Terrorbird","count":13,"mode":"cluster","url":"https://dragonwilds.th.gl/guides/Terrorbird"},{"name":"Aggressive Terrorbird","count":2,"mode":"pins","url":"https://dragonwilds.th.gl/guides/Aggressive%20Terrorbird"},{"name":"Ram","count":11,"mode":"cluster","url":"https://dragonwilds.th.gl/guides/Ram"},{"name":"Magpie","count":311,"mode":"cluster","url":"https://dragonwilds.th.gl/guides/Magpie"},{"name":"Raven","count":90,"mode":"cluster","url":"https://dragonwilds.th.gl/guides/Raven"},{"name":"Cursed Raven","count":10,"mode":"pins","url":"https://dragonwilds.th.gl/guides/Cursed%20Raven"},{"name":"Gyrfalcon","count":44,"mode":"cluster","url":"https://dragonwilds.th.gl/guides/Gyrfalcon"},{"name":"Garou Druid","count":21,"mode":"cluster","url":"https://dragonwilds.th.gl/guides/Garou%20Druid"},{"name":"Garou Exile","count":17,"mode":"cluster","url":"https://dragonwilds.th.gl/guides/Garou%20Exile"},{"name":"Garou Thane","count":8,"mode":"pins","url":"https://dragonwilds.th.gl/guides/Garou%20Thane"},{"name":"Garou Lightning Berserker","count":5,"mode":"pins","url":"https://dragonwilds.th.gl/guides/Garou%20Lightning%20Berserker"},{"name":"Black Knight Guardian","count":14,"mode":"cluster","url":"https://dragonwilds.th.gl/guides/Black%20Knight%20Guardian"},{"name":"Black Knight Sniper","count":16,"mode":"cluster","url":"https://dragonwilds.th.gl/guides/Black%20Knight%20Sniper"},{"name":"Blazing Black Knight","count":6,"mode":"pins","url":"https://dragonwilds.th.gl/guides/Blazing%20Black%20Knight"},{"name":"Black Knight Crusader","count":1,"mode":"unique","url":"https://dragonwilds.th.gl/guides/Black%20Knight%20Crusader"},{"name":"Elite Black Knight","count":6,"mode":"pins","url":"https://dragonwilds.th.gl/guides/Elite%20Black%20Knight"},{"name":"Goblin Archer","count":32,"mode":"cluster","url":"https://dragonwilds.th.gl/guides/Goblin%20Archer"},{"name":"Goblin Runt","count":27,"mode":"cluster","url":"https://dragonwilds.th.gl/guides/Goblin%20Runt"},{"name":"Goblin Bruiser","count":14,"mode":"cluster","url":"https://dragonwilds.th.gl/guides/Goblin%20Bruiser"},{"name":"Goblin Poisonshot Archer","count":4,"mode":"pins","url":"https://dragonwilds.th.gl/guides/Goblin%20Poisonshot%20Archer"},{"name":"Goblin Thug","count":1,"mode":"unique","url":"https://dragonwilds.th.gl/guides/Goblin%20Thug"},{"name":"Green Dragon","count":5,"mode":"pins","url":"https://dragonwilds.th.gl/guides/Green%20Dragon"},{"name":"Blue Dragon","count":4,"mode":"pins","url":"https://dragonwilds.th.gl/guides/Blue%20Dragon"},{"name":"Black Dragon","count":2,"mode":"pins","url":"https://dragonwilds.th.gl/guides/Black%20Dragon"},{"name":"Blightscale the Lesser Green Dragon","count":1,"mode":"unique","url":"https://dragonwilds.th.gl/guides/Blightscale%20the%20Lesser%20Green%20Dragon"},{"name":"Rat King","count":2,"mode":"pins","url":"https://dragonwilds.th.gl/guides/Rat%20King"},{"name":"Plague King","count":3,"mode":"pins","url":"https://dragonwilds.th.gl/guides/Plague%20King"},{"name":"Skeletal Marauder","count":17,"mode":"cluster","url":"https://dragonwilds.th.gl/guides/Skeletal%20Marauder"},{"name":"Skeletal Archer","count":28,"mode":"cluster","url":"https://dragonwilds.th.gl/guides/Skeletal%20Archer"},{"name":"Skeletal Blightshot","count":4,"mode":"pins","url":"https://dragonwilds.th.gl/guides/Skeletal%20Blightshot"},{"name":"Skeletal Hoplite","count":5,"mode":"pins","url":"https://dragonwilds.th.gl/guides/Skeletal%20Hoplite"},{"name":"Skeletal Necromancer","count":4,"mode":"pins","url":"https://dragonwilds.th.gl/guides/Skeletal%20Necromancer"},{"name":"Vault Guardian Hulk","count":3,"mode":"pins","url":"https://dragonwilds.th.gl/guides/Vault%20Guardian%20Hulk"},{"name":"Vault Guardian Sentinel","count":3,"mode":"pins","url":"https://dragonwilds.th.gl/guides/Vault%20Guardian%20Sentinel"},{"name":"Tok-Xil","count":7,"mode":"pins","url":"https://dragonwilds.th.gl/guides/Tok-Xil"},{"name":"Nature Spirit","count":5,"mode":"pins","url":"https://dragonwilds.th.gl/guides/Nature%20Spirit"}];
+(function(){
+ const q=document.getElementById('dwMapLayerSearch'), grid=document.getElementById('dwMapExpansionGrid'), count=document.getElementById('dwMapExpansionCount');
+ if(!grid)return;
+ function draw(){
+   const term=(q?.value||'').toLowerCase();
+   const rows=DW_MAP_EXPANSION.filter(x=>x.name.toLowerCase().includes(term));
+   if(count) count.textContent=rows.length+' additional verified creature layers';
+   grid.innerHTML=rows.map(d=>`<a href="${d.url}" target="_blank" rel="noopener" style="text-decoration:none;padding:9px;border:1px solid #304b61;border-radius:11px;background:#132635;color:#edf7ff"><b>${d.mode==='unique'?'👑':d.mode==='cluster'?'◌':'📍'} ${d.name}</b><div style="font-size:11px;margin-top:4px">${d.count} location${d.count===1?'':'s'}</div></a>`).join('');
+ }
+ q?.addEventListener('input',draw); draw();
+})();
+</script><div id="dwMapContextBar" style="position:fixed;left:50%;bottom:72px;transform:translateX(-50%);z-index:9998;display:none;gap:8px;align-items:center;max-width:92vw;padding:8px 10px;border:1px solid #46657c;border-radius:14px;background:#102333;color:white;box-shadow:0 8px 28px #0008;font-size:12px">
+<span id="dwMapContextText"></span>
+<button id="dwContextBestiary" style="padding:6px 9px;border-radius:9px;border:1px solid #57768c;background:#18364a;color:white">Bestiary</button>
+<button id="dwContextClear" style="padding:6px 9px;border-radius:9px;border:1px solid #57768c;background:#18364a;color:white">Clear</button>
+</div><script>
+(function(){
+ const KEY='dw-map-creature';
+ function slug(v){return String(v||'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')}
+ function creatureNames(){
+   try{
+     if(Array.isArray(window.creatures)) return window.creatures.map(x=>x.name).filter(Boolean);
+     if(typeof creatures!=='undefined' && Array.isArray(creatures)) return creatures.map(x=>x.name).filter(Boolean);
+   }catch(e){}
+   return [];
+ }
+ function updateBar(){
+   const name=localStorage.getItem(KEY), bar=document.getElementById('dwMapContextBar'), txt=document.getElementById('dwMapContextText');
+   if(!bar||!txt)return;
+   if(name){txt.textContent='Map filter: '+name;bar.style.display='flex'} else bar.style.display='none';
+ }
+ window.dwViewOnMap=function(name){
+   localStorage.setItem(KEY,name);
+   const sel=document.getElementById('dwCreatureFilter'); if(sel){sel.value=name;sel.dispatchEvent(new Event('change'))}
+   location.hash='map';
+   updateBar();
+   setTimeout(()=>document.querySelector('#dwRealMap,#dwStressPanel,#dwCoordAudit')?.scrollIntoView({behavior:'smooth',block:'start'}),80);
+ };
+ window.dwOpenBestiary=function(name){
+   localStorage.setItem('dw-bestiary-focus',name);
+   location.hash='bestiary';
+   const names=creatureNames();
+   setTimeout(()=>{
+     const candidates=[...document.querySelectorAll('button,a,[data-name],[data-creature],h2,h3')];
+     const hit=candidates.find(el=>(el.dataset?.name===name)||(el.dataset?.creature===name)||(el.textContent||'').trim()===name);
+     hit?.scrollIntoView({behavior:'smooth',block:'center'});
+   },100);
+ };
+ document.getElementById('dwContextBestiary')?.addEventListener('click',()=>dwOpenBestiary(localStorage.getItem(KEY)));
+ document.getElementById('dwContextClear')?.addEventListener('click',()=>{localStorage.removeItem(KEY);updateBar();const sel=document.getElementById('dwCreatureFilter');if(sel){sel.value='all';sel.dispatchEvent(new Event('change'))}});
+ // Add View on Map controls to obvious creature cards/details when their name can be identified.
+ const names=creatureNames();
+ if(names.length){
+   [...document.querySelectorAll('[data-name],[data-creature],article,.card,.creature-card')].forEach(el=>{
+     const n=el.dataset?.name||el.dataset?.creature||names.find(x=>(el.textContent||'').includes(x));
+     if(n && !el.querySelector('.dw-view-map')){
+       const b=document.createElement('button'); b.className='dw-view-map'; b.textContent='📍 View on Map';
+       b.style.cssText='margin:7px 5px 0 0;padding:6px 9px;border-radius:9px;border:1px solid #49677e;background:#16354a;color:#fff;font-size:11px';
+       b.onclick=(e)=>{e.preventDefault();e.stopPropagation();dwViewOnMap(n)}; el.appendChild(b);
+     }
+   });
+ }
+ // Make V0.21 map-layer links retain selected-creature context.
+ document.querySelectorAll('#dwMapExpansionGrid a,#dwLiveLayerGrid a').forEach(a=>{
+   a.addEventListener('click',()=>{const t=(a.querySelector('b')?.textContent||'').replace(/^[^A-Za-z0-9]+/,'').trim();if(t)localStorage.setItem(KEY,t)});
+ });
+ updateBar();
+})();
+</script><nav id="dwMobileNav" aria-label="Primary navigation">
+<button data-dwtab="bestiary"><span class="ico">🐲</span>Bestiary</button>
+<button data-dwtab="map"><span class="ico">🗺️</span>Map</button>
+<button data-dwtab="checklist"><span class="ico">✓</span>Checklist</button>
+</nav><script>
+(function(){
+ const buttons=[...document.querySelectorAll('#dwMobileNav button')];
+ function tabFromHash(){const h=(location.hash||'#bestiary').toLowerCase();return h.includes('map')?'map':h.includes('check')?'checklist':'bestiary'}
+ function paint(){const t=tabFromHash();buttons.forEach(b=>b.classList.toggle('active',b.dataset.dwtab===t))}
+ buttons.forEach(b=>b.addEventListener('click',()=>{
+   const t=b.dataset.dwtab; location.hash=t;
+   // Try existing tab controls first.
+   const candidates=[...document.querySelectorAll('button,a,[data-tab]')].filter(x=>!x.closest('#dwMobileNav'));
+   const hit=candidates.find(x=>(x.dataset?.tab||'').toLowerCase()===t || (x.textContent||'').trim().toLowerCase()===t);
+   hit?.click();
+   if(t==='map') setTimeout(()=>document.querySelector('#dwRealMap,#dwStressPanel,#dwCoordAudit')?.scrollIntoView({behavior:'smooth',block:'start'}),60);
+   else window.scrollTo({top:0,behavior:'smooth'});
+   paint();
+ }));
+ addEventListener('hashchange',paint);paint();
+})();
+</script><section class="dw-image-audit">
+<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"><b>V0.31 Boss Image Integrity Pass</b><span class="dw-img-badge">No misidentified boss art</span></div>
+<div style="font-size:12px;color:#aac0cf;margin-top:6px">Boss portraits are promoted only when the image clearly identifies the encounter. Generic family artwork remains reference-only; missing art stays explicitly queued for our own gameplay capture.</div>
+<div class="dw-image-audit-grid">
+ <div class="dw-image-audit-card"><b>The Radiant</b><div class="dw-shot-needed"><strong>Screenshot needed</strong><small>Generic red-dragon imagery is not specific enough.</small></div></div>
+ <div class="dw-image-audit-card"><b>Kuldra</b><div class="dw-shot-needed"><strong>Screenshot needed</strong><small>Use our own 1.0 raid capture for the final portrait.</small></div></div>
+ <div class="dw-image-audit-card"><b>Zogre / Ulgo</b><div class="dw-shot-needed"><strong>Encounter capture needed</strong><small>Keep generic Zogre and named Ulgo visually distinct.</small></div></div>
+ <div class="dw-image-audit-card"><b>Garou King</b><div class="dw-shot-needed"><strong>Boss capture needed</strong><small>Do not substitute generic Garou artwork.</small></div></div>
+ <div class="dw-image-audit-card"><b>Black Knight Titan</b><span class="dw-img-badge">🟡 Candidate / Temporary</span><div style="font-size:11px;color:#9fb8c9;margin-top:7px">Existing gameplay/press candidate retained pending our own capture.</div></div>
+ <div class="dw-image-audit-card"><b>Kalphite Queen</b><span class="dw-img-badge">🟡 Candidate / Temporary</span><div style="font-size:11px;color:#9fb8c9;margin-top:7px">Existing full-fight reference retained; final portrait still needs our screenshot.</div></div>
+ <div class="dw-image-audit-card"><b>Vault Bosses</b><div class="dw-shot-needed"><strong>Family capture pass needed</strong><small>Overlord, Archon, Incinerator, Corruptor, Pyroclast and Striker.</small></div></div>
+</div></section><script>
+window.DW_IMAGE_POLICY={
+ final:"Our own gameplay screenshot or clearly attributable approved asset",
+ candidate:"Correct encounter appears likely but remains temporary",
+ reference:"Family/scene reference only; never label as a specific boss",
+ missing:"Show screenshot-needed placeholder rather than substitute art"
+};
+</script><section class="dw-family-panel">
+<div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><b>V0.32 Creature Family Visual System</b><span class="dw-img-badge">Family identity ≠ boss portrait</span></div>
+<div style="font-size:12px;color:#abc1d0;margin-top:6px">Ordinary creatures can now share a recognizable family treatment while their stats, variants and encounters stay independent. Unique bosses still require their own verified image.</div>
+<div class="dw-family-grid" id="dwFamilyGrid"></div>
+</section><script>
+window.DW_FAMILIES=[{"family":"Goblin","icon":"\ud83d\udde1\ufe0f","members":"Goblin Warrior / Archer / Runt / Bruiser / Thug / Poisonshot","status":"Officially established faction"},{"family":"Garou","icon":"\ud83d\udc3a","members":"Hunter / Druid / Exile / Thane / Lightning Berserker","status":"Officially established faction"},{"family":"Skeleton & Rotsworn","icon":"\ud83d\udc80","members":"Warrior / Archer / Hoplite / Necromancer / Blightshot / Rotsworn","status":"Official Fellhollow undead"},{"family":"Black Knight","icon":"\u265e","members":"Warrior / Sniper / Guardian / Crusader / Blazing / Elite","status":"Official enemy faction"},{"family":"Kalphite","icon":"\ud83e\udeb2","members":"Worker / Soldier / Guardian","status":"Official Umbral Sands brood"},{"family":"Kot\u2019Haar","icon":"\ud83d\uddff","members":"Ket / Xil / Kal / Hur","status":"Official Umbral Sands elemental faction"},{"family":"Chromatic Dragon","icon":"\ud83d\udc09","members":"Green / Blue / Black + named dragon encounters","status":"Official dragon family"},{"family":"Zogre","icon":"\ud83e\udddf","members":"Zogre + named unique Ulgo","status":"Official Fellhollow enemy family"},{"family":"Demon / Zamorakian","icon":"\ud83d\udd25","members":"Lesser / Shardbound / Stormpact / Abyssal / Acolyte / Mage","status":"Family grouping; individual art pending"},{"family":"Wildlife","icon":"\ud83e\udd8c","members":"Rat / Wolf / Kebbit / Vulture / Deer / livestock","status":"Functional family grouping"}];
+(function(){
+ const el=document.getElementById('dwFamilyGrid');if(!el)return;
+ el.innerHTML=DW_FAMILIES.map(f=>`<div class="dw-family-card"><div class="dw-family-icon">${f.icon}</div><b>${f.family}</b><div class="dw-family-members">${f.members}</div><div class="dw-family-status">${f.status}</div></div>`).join('');
+ window.dwFamilyFor=function(name){
+  name=String(name||'').toLowerCase();
+  const rules=[
+   ['Goblin',/goblin/],['Garou',/garou/],['Skeleton & Rotsworn',/skelet|rotsworn/],
+   ['Black Knight',/black knight/],['Kalphite',/kalphite/],["Kot’Haar",/kothaar|kot'haar/],
+   ['Chromatic Dragon',/dragon|radiant|blightscale|fuzan|imaru|kuldra|velgar/],
+   ['Zogre',/zogre|ulgo/],['Demon / Zamorakian',/demon|zamorak|hellhound/],
+   ['Wildlife',/rat|wolf|kebbit|vulture|deer|cow|chicken|sheep|ram|bird|raven|falcon|chinchompa/]
+  ];
+  const r=rules.find(x=>x[1].test(name)); return r?r[0]:'Other';
+ };
+})();
+</script><script>
+(function(){
+ const familyMeta={
+  'Goblin':['🗡️','Goblin'],'Garou':['🐺','Garou'],'Skeleton & Rotsworn':['💀','Undead'],
+  'Black Knight':['♞','Black Knight'],'Kalphite':['🪲','Kalphite'],"Kot’Haar":['🗿',"Kot’Haar"],
+  'Chromatic Dragon':['🐉','Dragon'],'Zogre':['🧟','Zogre'],'Demon / Zamorakian':['🔥','Demon'],
+  'Wildlife':['🦌','Wildlife'],'Other':['⚔️','Creature']
+ };
+ const unique=/\b(king|queen|titan|radiant|kuldra|ulgo|blightscale|imaru|velgar|overlord|archon|incinerator|corruptor|pyroclast|striker|fuzan)\b/i;
+ function addChip(el,name){
+   if(!name||el.querySelector('.dw-family-chip'))return;
+   const fam=window.dwFamilyFor?window.dwFamilyFor(name):'Other', meta=familyMeta[fam]||familyMeta.Other;
+   const chip=document.createElement('span');chip.className='dw-family-chip';
+   chip.innerHTML=`<span class="fi">${meta[0]}</span>${meta[1]}${unique.test(name)?' · Unique':''}`;
+   const head=el.querySelector('h1,h2,h3,h4,.name,.title')||el.firstElementChild;
+   if(head) head.insertAdjacentElement('afterend',chip); else el.prepend(chip);
+ }
+ function names(){
+   try{
+    if(Array.isArray(window.creatures))return window.creatures.map(x=>x.name).filter(Boolean);
+    if(typeof creatures!=='undefined'&&Array.isArray(creatures))return creatures.map(x=>x.name).filter(Boolean);
+   }catch(e){}
+   return [];
+ }
+ function apply(){
+   const ns=names();
+   const cards=[...document.querySelectorAll('.creature-card,.card,article,[data-name],[data-creature]')];
+   cards.forEach(el=>{
+     let n=el.dataset?.name||el.dataset?.creature;
+     if(!n&&ns.length)n=ns.find(x=>(el.textContent||'').includes(x));
+     if(n)addChip(el,n);
+   });
+   // Fallback: tag exact creature headings even if the legacy renderer lacks card classes.
+   if(ns.length)[...document.querySelectorAll('h1,h2,h3,h4')].forEach(h=>{
+     const n=ns.find(x=>(h.textContent||'').trim()===x);
+     if(n){
+       const host=h.closest('.creature-card,.card,article,section,div');
+       if(host)addChip(host,n);
+     }
+   });
+ }
+ apply();
+ let dwApplyQueued=false;
+ new MutationObserver(()=>{if(dwApplyQueued)return;dwApplyQueued=true;requestAnimationFrame(()=>{dwApplyQueued=false;apply()})}).observe(document.body,{childList:true,subtree:true});
+})();
+</script><script>
+window.dwRenderCombatDetail=function(c){
+ const val=(x)=>x===undefined||x===null||x===''?'Unknown':x;
+ const statuses=c.status||c.statuses||{};
+ const portrait=c.image?`<img src="${c.image}" alt="${c.name||'Creature'}">`:'🐉';
+ return `<section class="dw-detail-shell">
+  <div class="dw-detail-hero"><div class="dw-detail-portrait">${portrait}</div><div>
+   <div style="font-size:11px;color:#8facbd">${val(c.family|| (window.dwFamilyFor&&dwFamilyFor(c.name)))}</div>
+   <h2 style="margin:3px 0 4px">${val(c.name)}</h2>
+   <div style="font-size:12px;color:#b3c8d5">${val(c.description||c.desc)}</div>
+  </div></div>
+  <div class="dw-combat-grid">
+   <div class="dw-statbox"><strong>HP</strong><span>${val(c.hp)}</span></div>
+   <div class="dw-statbox"><strong>Power Level</strong><span>${val(c.power||c.powerLevel)}</span></div>
+  </div>
+  <div class="dw-combat-sections">
+   <div class="dw-combat-section"><b>⚔️ Weakness</b>${val(c.weak||c.weakness)}${c.weakPoint?`<div style="margin-top:5px">🎯 Weak point: ${c.weakPoint}</div>`:''}</div>
+   <div class="dw-combat-section"><b>🛡️ Resistance</b>${val(c.resist||c.resistance)}</div>
+   <div class="dw-combat-section"><b>Status</b><div class="dw-status-row"><span class="dw-status-pill">🩸 ${val(statuses.bleed||c.bleed)}</span><span class="dw-status-pill">☠️ ${val(statuses.poison||c.poison)}</span><span class="dw-status-pill">🔥 ${val(statuses.burn||c.burn)}</span></div></div>
+   <div class="dw-combat-section"><b>📍 Location</b>${val(c.location||c.region)}</div>
+  </div>
+  <div class="dw-detail-actions"><button onclick="dwViewOnMap('${String(c.name||'').replace(/'/g,"\\'")}')">📍 View on Map</button><button onclick="window.dwProgress?dwProgress.toggle('fav','${String(c.name||'').replace(/'/g,"\\'")}'):localStorage.setItem('dw-fav-${String(c.name||'').replace(/'/g,"\\'")}','1')">❤️ Favorite</button></div>
+  <details class="dw-detail-more"><summary>Variants, drops & verification</summary>
+   <div class="dw-combat-section"><b>Variants / Difficulty</b>${val(c.variants||c.variant||c.difficulty)}</div>
+   <div class="dw-combat-section" style="margin-top:6px"><b>Drops</b>${val(c.drops)}</div>
+   <div style="font-size:10px;color:#8da9b9;margin-top:7px">${val(c.verify||c.verification)}</div>
+  </details>
+ </section>`;
+};
+(function(){
+ // Enhance existing detail-like containers with a class so legacy pages gain the phone spacing too.
+ [...document.querySelectorAll('.detail,.creature-detail,[data-detail]')].forEach(el=>el.classList.add('dw-detail-shell'));
+})();
+</script><section id="dwProgressTracker" class="dw-progress-panel">
+<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"><b>V0.32 Progress Tracker</b><span id="dwProgressTotal" style="font-size:11px;color:#9fb8c9"></span></div>
+<div class="dw-progress-stats">
+ <div class="dw-progress-stat"><strong id="dwSeenPct">0%</strong><small>👁 Seen</small><div class="dw-progressbar"><i id="dwSeenBar" style="width:0%"></i></div></div>
+ <div class="dw-progress-stat"><strong id="dwDefPct">0%</strong><small>✓ Defeated</small><div class="dw-progressbar"><i id="dwDefBar" style="width:0%"></i></div></div>
+ <div class="dw-progress-stat"><strong id="dwFavCount">0</strong><small>❤️ Favorites</small></div>
+</div>
+<div class="dw-check-filters" id="dwCheckFilters">
+ <button data-f="all" class="active">All</button><button data-f="unseen">Unseen</button><button data-f="undefeated">Not defeated</button><button data-f="favorites">Favorites</button>
+</div>
+<input id="dwCheckSearch" placeholder="Search checklist…" style="box-sizing:border-box;width:100%;margin-top:8px;padding:9px;border-radius:9px;border:1px solid #3b566d;background:#122536;color:#fff">
+<div id="dwCheckGrid" class="dw-check-grid"></div>
+</section><script>
+(function(){
+ const grid=document.getElementById('dwCheckGrid'); if(!grid)return;
+ function getCreatures(){
+   try{
+    const arr=(Array.isArray(window.creatures)?window.creatures:(typeof creatures!=='undefined'&&Array.isArray(creatures)?creatures:[]));
+    return arr.map(c=>({name:c.name,family:c.family||(window.dwFamilyFor&&dwFamilyFor(c.name))||'Other'})).filter(x=>x.name);
+   }catch(e){return[]}
+ }
+ let filter='all';
+ const key=(type,name)=>`dw-${type}-${name}`;
+ const on=(type,name)=>localStorage.getItem(key(type,name))==='1';
+ function set(type,name,v){localStorage.setItem(key(type,name),v?'1':'0');render()}
+ function render(){
+   const all=getCreatures(), q=(document.getElementById('dwCheckSearch')?.value||'').toLowerCase();
+   const seen=all.filter(x=>on('seen',x.name)).length, def=all.filter(x=>on('def',x.name)).length, fav=all.filter(x=>on('fav',x.name)).length, total=all.length||1;
+   const sp=Math.round(seen/total*100), dp=Math.round(def/total*100);
+   document.getElementById('dwSeenPct').textContent=sp+'%';document.getElementById('dwSeenBar').style.width=sp+'%';
+   document.getElementById('dwDefPct').textContent=dp+'%';document.getElementById('dwDefBar').style.width=dp+'%';
+   document.getElementById('dwFavCount').textContent=fav;document.getElementById('dwProgressTotal').textContent=all.length+' creatures tracked locally';
+   const rows=all.filter(x=>x.name.toLowerCase().includes(q)).filter(x=>filter==='all'||(filter==='unseen'&&!on('seen',x.name))||(filter==='undefeated'&&!on('def',x.name))||(filter==='favorites'&&on('fav',x.name)));
+   grid.innerHTML=rows.map(x=>`<div class="dw-check-row"><b>${x.name}</b><div style="font-size:10px;color:#94afbf;margin-top:2px">${x.family}</div><div class="dw-check-actions">
+    <button class="${on('seen',x.name)?'on':''}" data-a="seen" data-n="${x.name.replace(/"/g,'&quot;')}">👁 Seen</button>
+    <button class="${on('def',x.name)?'on':''}" data-a="def" data-n="${x.name.replace(/"/g,'&quot;')}">✓ Defeated</button>
+    <button class="${on('fav',x.name)?'on':''}" data-a="fav" data-n="${x.name.replace(/"/g,'&quot;')}">❤️</button>
+   </div></div>`).join('');
+   grid.querySelectorAll('button[data-a]').forEach(b=>b.onclick=()=>set(b.dataset.a,b.dataset.n,!on(b.dataset.a,b.dataset.n)));
+ }
+ document.getElementById('dwCheckSearch')?.addEventListener('input',render);
+ document.querySelectorAll('#dwCheckFilters button').forEach(b=>b.onclick=()=>{filter=b.dataset.f;document.querySelectorAll('#dwCheckFilters button').forEach(x=>x.classList.toggle('active',x===b));render()});
+ render();
+ window.dwRefreshChecklist=render;
+})();
+</script><script>
+(function(){
+ const K=(t,n)=>`dw-${t}-${n}`, get=(t,n)=>localStorage.getItem(K(t,n))==='1';
+ function put(t,n,v){
+   localStorage.setItem(K(t,n),v?'1':'0');
+   document.dispatchEvent(new CustomEvent('dw-progress-change',{detail:{type:t,name:n,value:v}}));
+   window.dwRefreshChecklist?.();
+   paint();
+ }
+ window.dwProgress={get,put,toggle:(t,n)=>put(t,n,!get(t,n))};
+
+ function creatureNames(){
+  try{
+   const a=Array.isArray(window.creatures)?window.creatures:(typeof creatures!=='undefined'&&Array.isArray(creatures)?creatures:[]);
+   return a.map(x=>x.name).filter(Boolean);
+  }catch(e){return[]}
+ }
+ function nameFor(el,names){
+   return el.dataset?.name||el.dataset?.creature||names.find(n=>(el.textContent||'').includes(n));
+ }
+ function addControls(el,name){
+   if(!name||el.querySelector(':scope > .dw-progress-mini'))return;
+   const wrap=document.createElement('div');wrap.className='dw-progress-mini';wrap.dataset.progressFor=name;
+   [['seen','👁 Seen'],['def','✓ Defeated'],['fav','❤️']].forEach(([t,label])=>{
+    const b=document.createElement('button');b.type='button';b.dataset.pt=t;b.textContent=label;
+    b.onclick=e=>{e.preventDefault();e.stopPropagation();put(t,name,!get(t,name))};wrap.appendChild(b);
+   });
+   el.appendChild(wrap);
+ }
+ function paint(){
+   document.querySelectorAll('.dw-progress-mini').forEach(w=>{
+    const n=w.dataset.progressFor;
+    w.querySelectorAll('button[data-pt]').forEach(b=>b.classList.toggle('on',get(b.dataset.pt,n)));
+   });
+   document.querySelectorAll('[data-dw-progress-name]').forEach(el=>{
+    const n=el.dataset.dwProgressName;
+    el.querySelectorAll('[data-pt]').forEach(b=>b.classList.toggle('on',get(b.dataset.pt,n)));
+   });
+ }
+ function apply(){
+   const names=creatureNames(); if(!names.length)return;
+   [...document.querySelectorAll('.creature-card,.card,article,[data-name],[data-creature]')].forEach(el=>{
+     const n=nameFor(el,names);if(n)addControls(el,n);
+   });
+   paint();
+ }
+ // Patch reusable combat-detail renderer output after render by exposing a helper for detail hosts.
+ window.dwAttachProgressToDetail=function(host,name){
+   if(!host||!name)return;host.dataset.dwProgressName=name;
+   if(!host.querySelector('.dw-progress-mini'))addControls(host,name);paint();
+ };
+ apply();
+ let dwApplyQueued=false;
+ new MutationObserver(()=>{if(dwApplyQueued)return;dwApplyQueued=true;requestAnimationFrame(()=>{dwApplyQueued=false;apply()})}).observe(document.body,{childList:true,subtree:true});
+ document.addEventListener('dw-progress-change',paint);
+})();
+</script><section id="dwSpoilerControl">
+<div style="display:flex;align-items:center;gap:7px;flex-wrap:wrap"><b>🛡️ Spoiler Protection</b><span style="font-size:11px;color:#9fb8c9">Choose your current progression</span></div>
+<label style="display:block;margin-top:8px;font-size:12px">Progress:
+<select id="dwProgressTier">
+<option value="1">Early game / Brynmoor</option>
+<option value="2">Mid game / Vaults & Highlands</option>
+<option value="3">Fellhollow / advanced regions</option>
+<option value="4">Umbral Sands / late game</option>
+<option value="5">Scorned Wilderness / raid endgame</option>
+</select></label>
+<div style="font-size:10px;color:#8faabb;margin-top:6px">Entries above your tier hide name, image, boss identity, drops and location. “Reveal Anyway” is remembered per creature.</div>
+</section><script>
+(function(){
+ const TIERKEY='dw-spoiler-tier', sel=document.getElementById('dwProgressTier');
+ const tierRules=[
+  [/kuldra|scorned wilderness/i,5],
+  [/radiant|kalphite|kothaar|kot'haar|umbral|black dragon|fuzan/i,4],
+  [/imaru|zogre|ulgo|fellhollow|rotsworn|blightshot/i,3],
+  [/vault|garou king|black knight titan/i,2]
+ ];
+ function tierFor(name,el){
+   const explicit=Number(el?.dataset?.spoilerTier||el?.dataset?.tier);if(explicit)return explicit;
+   const r=tierRules.find(x=>x[0].test(name||''));return r?r[1]:1;
+ }
+ function current(){return Number(localStorage.getItem(TIERKEY)||1)}
+ function revealed(n){return localStorage.getItem('dw-reveal-'+n)==='1'}
+ function creatureNames(){
+   try{const a=Array.isArray(window.creatures)?window.creatures:(typeof creatures!=='undefined'&&Array.isArray(creatures)?creatures:[]);return a.map(x=>x.name).filter(Boolean)}catch(e){return[]}
+ }
+ function nameFor(el,names){return el.dataset?.name||el.dataset?.creature||names.find(n=>(el.textContent||'').includes(n))}
+ function unlock(el){el.classList.remove('dw-spoiler-locked');el.querySelector(':scope > .dw-spoiler-cover')?.remove()}
+ function lock(el,name,tier){
+   if(el.querySelector(':scope > .dw-spoiler-cover'))return;
+   el.classList.add('dw-spoiler-locked');
+   const c=document.createElement('div');c.className='dw-spoiler-cover';
+   c.innerHTML=`<div style="font-size:27px">🔒</div><b>Undiscovered Creature</b><small>Progression tier ${tier}</small><button type="button">Reveal Anyway</button>`;
+   c.querySelector('button').onclick=e=>{e.preventDefault();e.stopPropagation();localStorage.setItem('dw-reveal-'+name,'1');apply()};
+   el.appendChild(c);
+ }
+ function apply(){
+   const names=creatureNames(), cur=current();
+   document.querySelectorAll('.creature-card,.card,article,[data-name],[data-creature],.dw-detail-shell').forEach(el=>{
+    const n=nameFor(el,names);if(!n)return;const t=tierFor(n,el);
+    if(t>cur&&!revealed(n))lock(el,n,t);else unlock(el);
+   });
+   // Hide map-layer names above progression as well.
+   document.querySelectorAll('#dwMapExpansionGrid a,#dwLiveLayerGrid a,#dwStressCards button').forEach(el=>{
+    const txt=(el.textContent||'').trim(), n=names.find(x=>txt.includes(x))||txt.split(/\d/)[0].replace(/^[^A-Za-z]+/,'').trim();
+    if(n&&tierFor(n,el)>cur&&!revealed(n)){el.dataset.originalHtml=el.dataset.originalHtml||el.innerHTML;el.innerHTML='<b>🔒 Undiscovered Creature</b>';el.removeAttribute('href')}
+    else if(el.dataset.originalHtml){el.innerHTML=el.dataset.originalHtml;delete el.dataset.originalHtml}
+   });
+ }
+ if(sel){sel.value=String(current());sel.onchange=()=>{localStorage.setItem(TIERKEY,sel.value);apply()}}
+ window.dwSpoilers={tierFor,current,revealed,apply};
+ setTimeout(apply,0);
+ let dwApplyQueued=false;
+ new MutationObserver(()=>{if(dwApplyQueued)return;dwApplyQueued=true;requestAnimationFrame(()=>{dwApplyQueued=false;apply()})}).observe(document.body,{childList:true,subtree:true});
+})();
+</script><section id="dwRcStatus" style="max-width:980px;margin:12px auto;padding:12px;border:1px solid #3a5a70;border-radius:16px;background:#0d1c28;color:#eaf6ff">
+<b>V0.32 Release-Candidate Cleanup</b>
+<div style="font-size:12px;color:#abc0cf;margin-top:6px">Progress storage is normalized, dynamic enhancement observers are throttled, and the app now performs a lightweight startup integrity check.</div>
+<div id="dwRcChecks" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:7px;margin-top:9px"></div>
+</section><script>
+(function(){
+ const el=document.getElementById('dwRcChecks');if(!el)return;
+ const tests=[
+  ['Primary navigation',!!document.getElementById('dwMobileNav')],
+  ['Progress tracker',!!document.getElementById('dwProgressTracker')],
+  ['Spoiler control',!!document.getElementById('dwSpoilerControl')],
+  ['Map integration',typeof window.dwViewOnMap==='function'],
+  ['Shared progress API',!!window.dwProgress],
+  ['Spoiler API',!!window.dwSpoilers]
+ ];
+ el.innerHTML=tests.map(([n,ok])=>`<div style="padding:8px;border:1px solid #304e63;border-radius:11px;background:#112635;font-size:11px">${ok?'✓':'⚠️'} ${n}</div>`).join('');
+})();
+</script></body></html>
